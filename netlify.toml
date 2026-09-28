@@ -1,0 +1,10 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+# Keeps the site's existing fetch('/api/chat') call working —
+# it gets routed to the real Netlify Function under the hood.
+[[redirects]]
+  from = "/api/chat"
+  to = "/.netlify/functions/chat"
+  status = 200
