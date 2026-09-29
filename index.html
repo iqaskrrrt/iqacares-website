@@ -962,7 +962,7 @@
 
 <style>
   #chatFab{
-    position:fixed; bottom:24px; left:24px; z-index:90;
+    position:fixed; bottom:72px; right:24px; z-index:90;
     width:56px; height:56px; border-radius:50%; background:var(--text); color:var(--white);
     border:none; cursor:pointer; display:flex; align-items:center; justify-content:center;
     box-shadow:0 10px 30px -8px rgba(0,0,0,0.35); transition:transform .2s ease, background .2s ease;
@@ -971,8 +971,8 @@
   #chatFab svg{width:24px; height:24px;}
 
   #chatPanel{
-    position:fixed; bottom:92px; left:24px; z-index:90;
-    width:360px; max-width:calc(100vw - 32px); height:520px; max-height:calc(100vh - 140px);
+    position:fixed; bottom:140px; right:24px; z-index:90;
+    width:360px; max-width:calc(100vw - 32px); height:520px; max-height:calc(100vh - 170px);
     background:var(--white); border-radius:18px; box-shadow:0 24px 60px -16px rgba(0,0,0,0.28);
     display:flex; flex-direction:column; overflow:hidden;
     opacity:0; transform:translateY(16px) scale(0.98); pointer-events:none;
@@ -1013,8 +1013,8 @@
   #chatSend:disabled{opacity:0.5; cursor:default;}
   #chatSend svg{width:16px; height:16px;}
   @media (max-width:480px){
-    #chatPanel{left:16px; bottom:84px; width:calc(100vw - 32px);}
-    #chatFab{left:16px; bottom:16px;}
+    #chatPanel{right:16px; bottom:128px; width:calc(100vw - 32px); max-height:calc(100vh - 150px);}
+    #chatFab{right:16px; bottom:64px;}
   }
 </style>
 
