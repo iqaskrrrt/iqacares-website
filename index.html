@@ -163,11 +163,24 @@
   /* ---------- PLANS ---------- */
   .plans-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
   .plan-card{
-    background:var(--bg-soft); border-radius:18px; padding:32px;
-    display:flex; flex-direction:column; transition:transform .25s ease;
+    background:var(--bg-soft); border-radius:18px; padding:30px;
+    display:flex; flex-direction:column; transition:transform .25s ease, opacity .25s ease;
   }
+  .plan-card.dim{opacity:.28;}
+  .plan-card.hide{display:none;}
+  .need-chips{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin:-24px auto 40px; max-width:760px;}
+  .need-chip{
+    padding:9px 16px; border-radius:980px; border:1px solid var(--line); background:var(--white);
+    font-size:13.5px; color:var(--text-secondary); cursor:pointer; font-family:inherit;
+  }
+  .need-chip:hover{color:var(--text); border-color:var(--text-tertiary);}
+  .need-chip.active{background:var(--text); border-color:var(--text); color:var(--white); font-weight:500;}
+  .plan-kind{font-size:11.5px; color:var(--text-tertiary); margin-top:-4px; margin-bottom:12px;}
+  .plan-card.featured .plan-kind{color:#86868B;}
+  .plans-note{font-size:12px; color:var(--text-tertiary); text-align:center; max-width:720px; margin:36px auto 0; line-height:1.6;}
   .plan-card:hover{transform:translateY(-4px);}
   .plan-card.featured{background:var(--text); color:var(--white);}
+  .plan-card.featured h3{color:var(--white);}
   .plan-card.featured .plan-desc{color:#A1A1A6;}
   .plan-card.featured .plan-li{color:#D2D2D7; border-top-color:rgba(255,255,255,0.12);}
   .plan-card.featured .plan-li::before{color:var(--white);}
@@ -190,7 +203,14 @@
   }
   .plan-card.featured .plan-btn{background:var(--white); color:var(--text); border:none;}
   .plan-btn:hover{background:var(--bg-soft);}
-  @media (max-width:860px){ .plans-grid{grid-template-columns:1fr;} }
+  @media (max-width:960px){ .plans-grid{grid-template-columns:1fr 1fr;} }
+  @media (max-width:640px){ .plans-grid{grid-template-columns:1fr;} .need-chips{margin-top:-28px;} }
+  .mf-consent{display:flex; gap:10px; align-items:flex-start; font-size:12.5px; color:var(--text-secondary); line-height:1.5; cursor:pointer;}
+  .mf-consent input{margin-top:3px; width:16px; height:16px; accent-color:var(--accent); flex-shrink:0;}
+  .mf-consent.err{color:#D70015;}
+  .trust-link{color:var(--accent); font-size:12.5px; display:inline-block; margin-top:6px;}
+  .trust-link:hover{text-decoration:underline;}
+  .foot-legal{font-size:11.5px; color:var(--text-tertiary); line-height:1.6; margin-top:24px; max-width:820px;}
 
   /* ---------- FORM PREVIEW ---------- */
   .form-sec{background:var(--bg-dark); color:var(--white);}
@@ -349,8 +369,8 @@
           <span>Pembantu AI iqacares</span>
           <div class="pulse"></div>
         </div>
-        <div class="chat-bubble me">Saya nak tahu takaful pendidikan untuk anak umur 5 tahun, apa plan sesuai?</div>
-        <div class="chat-bubble">Untuk perlindungan pendidikan, biasanya plan simpanan jangka panjang lebih sesuai. Nak saya terangkan pilihan, atau terus tempah sesi dengan ejen untuk quotation penuh?</div>
+        <div class="chat-bubble me">Saya baru kahwin dan merancang nak mengandung. Ada pelan untuk ibu dan baby?</div>
+        <div class="chat-bubble">Ada! PruBSN Anggun ada manfaat Mom Care untuk kehamilan dan bayi, manakala Asas360 boleh dimulakan seawal kandungan 13 minggu. Nak saya terangkan bezanya, atau terus tempah sesi dengan Iqa untuk quotation penuh?</div>
         <div class="hero-card-foot">Klik untuk cuba tanya sendiri →</div>
       </div>
     </div>
@@ -408,45 +428,117 @@
 <section id="plan">
   <div class="wrap">
     <div class="sec-head">
-      <span class="eyebrow">Plan Takaful</span>
-      <h2>Pilih perlindungan mengikut keperluan</h2>
-      <p>Gambaran am sahaja — quotation sebenar disediakan mengikut umur, status kesihatan dan budget anda.</p>
+      <span class="eyebrow">Pelan Prudential BSN Takaful</span>
+      <h2>Pelan mana sesuai untuk anda?</h2>
+      <p>Pilih situasi anda untuk lihat pelan yang berkaitan. Gambaran am sahaja — quotation sebenar disediakan ikut umur, kesihatan dan budget anda.</p>
     </div>
-    <div class="plans-grid">
-      <div class="plan-card">
-        <div class="plan-tag">Perlindungan asas</div>
-        <h3>Takaful Nyawa</h3>
-        <p class="plan-desc">Perlindungan kematian dan hilang upaya kekal untuk ketenangan keluarga.</p>
+    <div class="need-chips" role="group" aria-label="Tapis pelan ikut keperluan">
+      <button type="button" class="need-chip active" data-need="all">Semua pelan</button>
+      <button type="button" class="need-chip" data-need="muda">Baru mula / bajet ketat</button>
+      <button type="button" class="need-chip" data-need="keluarga">Keluarga &amp; perubatan</button>
+      <button type="button" class="need-chip" data-need="wanita">Wanita &amp; kehamilan</button>
+      <button type="button" class="need-chip" data-need="kritikal">Penyakit kritikal</button>
+      <button type="button" class="need-chip" data-need="legasi">Legasi &amp; simpanan</button>
+    </div>
+    <div class="plans-grid" id="plansGrid">
+      <div class="plan-card" data-needs="muda">
+        <div class="plan-tag">Untuk golongan muda</div>
+        <h3>PruBSN DamaiGenZ</h3>
+        <div class="plan-kind">Pakej 5-dalam-1</div>
+        <p class="plan-desc">Pakej permulaan yang gabungkan perlindungan nyawa, perubatan, kemalangan dan penyakit kritikal dalam satu pelan.</p>
         <ul class="plan-list">
-          <li class="plan-li">Caruman dari serendah RM50/bulan</li>
-          <li class="plan-li">Perlindungan sehingga RM500,000</li>
-          <li class="plan-li">Tiada pemeriksaan perubatan untuk sum tertentu</li>
+          <li class="plan-li">Dari RM78/bulan (contoh: wanita 25 tahun, bukan perokok)</li>
+          <li class="plan-li">Termasuk kad perubatan Medic TotalCare</li>
+          <li class="plan-li">Perlindungan kemalangan &amp; penyakit kritikal</li>
         </ul>
-        <a href="#tempah" class="plan-btn">Tanya lanjut</a>
+        <a href="#tempah" class="plan-btn" data-plan="PruBSN DamaiGenZ">Tanya lanjut</a>
       </div>
-      <div class="plan-card featured">
-        <div class="plan-tag">Paling diminati</div>
-        <h3>Takaful Kesihatan</h3>
-        <p class="plan-desc">Liputan hospital &amp; pembedahan, dengan pilihan rider penyakit kritikal.</p>
+      <div class="plan-card" data-needs="muda keluarga">
+        <div class="plan-tag">Asas yang boleh dibina</div>
+        <h3>PruBSN AnugerahMax</h3>
+        <div class="plan-kind">Pelan asas + manfaat pilihan</div>
+        <p class="plan-desc">Perlindungan kematian &amp; hilang upaya menyeluruh (TPD), yang boleh ditambah ikut keperluan anda.</p>
         <ul class="plan-list">
-          <li class="plan-li">Liputan sehingga RM1 juta setahun</li>
-          <li class="plan-li">Panel hospital seluruh Malaysia</li>
-          <li class="plan-li">Boleh tambah rider penyakit kritikal</li>
+          <li class="plan-li">Dari RM50/bulan, umur masuk 1–70 tahun</li>
+          <li class="plan-li">18 manfaat pilihan: perubatan, penyakit kritikal, kemalangan &amp; lain-lain</li>
+          <li class="plan-li">Tempoh fleksibel, sehingga umur 100</li>
         </ul>
-        <a href="#tempah" class="plan-btn">Tanya lanjut</a>
+        <a href="#tempah" class="plan-btn" data-plan="PruBSN AnugerahMax">Tanya lanjut</a>
       </div>
-      <div class="plan-card">
-        <div class="plan-tag">Simpanan jangka panjang</div>
-        <h3>Takaful Pendidikan</h3>
-        <p class="plan-desc">Simpanan terancang untuk pendidikan tinggi anak-anak.</p>
+      <div class="plan-card featured" data-needs="keluarga kritikal">
+        <div class="plan-tag">Pakej lengkap</div>
+        <h3>PruBSN Sinar</h3>
+        <div class="plan-kind">AnugerahMax + Crisis TotalCare + perubatan</div>
+        <p class="plan-desc">Pakej siap sedia untuk ketua keluarga — nyawa, perubatan, kemalangan dan penyakit kritikal dari peringkat awal.</p>
         <ul class="plan-list">
-          <li class="plan-li">Matang mengikut umur pengajian anak</li>
-          <li class="plan-li">Elemen simpanan + perlindungan</li>
-          <li class="plan-li">Fleksibel ikut tempoh caruman</li>
+          <li class="plan-li">Crisis TotalCare: perlindungan sehingga 166 keadaan</li>
+          <li class="plan-li">Bayaran awal 50% untuk penyakit kritikal peringkat awal</li>
+          <li class="plan-li">Kad perubatan Medic TotalCare &amp; perlindungan kemalangan</li>
         </ul>
-        <a href="#tempah" class="plan-btn">Tanya lanjut</a>
+        <a href="#tempah" class="plan-btn" data-plan="PruBSN Sinar">Tanya lanjut</a>
+      </div>
+      <div class="plan-card" data-needs="keluarga wanita">
+        <div class="plan-tag">Sejak dalam kandungan</div>
+        <h3>PruBSN Asas360</h3>
+        <div class="plan-kind">Pelan berkaitan pelaburan</div>
+        <p class="plan-desc">Perlindungan menyeluruh untuk seisi keluarga — boleh mula seawal kandungan 13 minggu.</p>
+        <ul class="plan-list">
+          <li class="plan-li">Health360: perubatan tanpa had tahunan &amp; seumur hidup</li>
+          <li class="plan-li">Baby TotalCare: komplikasi kehamilan &amp; keadaan kongenital</li>
+          <li class="plan-li">Dari RM100/bulan (dewasa) atau RM50/bulan (kanak-kanak)</li>
+        </ul>
+        <a href="#tempah" class="plan-btn" data-plan="PruBSN Asas360">Tanya lanjut</a>
+      </div>
+      <div class="plan-card" data-needs="wanita">
+        <div class="plan-tag">Khas untuk wanita</div>
+        <h3>PruBSN Anggun</h3>
+        <div class="plan-kind">Wanita umur 19–60</div>
+        <p class="plan-desc">Direka untuk setiap fasa hidup wanita — dari kahwin, mengandung hingga kesihatan wanita.</p>
+        <ul class="plan-list">
+          <li class="plan-li">Life Stage Benefit: kahwin, bersalin &amp; umrah</li>
+          <li class="plan-li">Mom Care: kehamilan, kesuburan &amp; bayi</li>
+          <li class="plan-li">Perlindungan kanser wanita &amp; Mental Care</li>
+        </ul>
+        <a href="#tempah" class="plan-btn" data-plan="PruBSN Anggun">Tanya lanjut</a>
+      </div>
+      <div class="plan-card" data-needs="kritikal">
+        <div class="plan-tag">Fokus penyakit kritikal</div>
+        <h3>PruBSN Kritikal Care360</h3>
+        <div class="plan-kind">Pelan penyakit kritikal berasingan</div>
+        <p class="plan-desc">Wang tunai bila diagnos penyakit kritikal, supaya anda boleh fokus pada pemulihan — bukan bil.</p>
+        <ul class="plan-list">
+          <li class="plan-li">Perlindungan 43 penyakit kritikal, peringkat awal hingga akhir</li>
+          <li class="plan-li">Recovery Allowance RM10,000 untuk pembedahan major / ICU</li>
+          <li class="plan-li">Living Reward &amp; Wellness Reward</li>
+        </ul>
+        <a href="#tempah" class="plan-btn" data-plan="PruBSN Kritikal Care360">Tanya lanjut</a>
+      </div>
+      <div class="plan-card" data-needs="legasi">
+        <div class="plan-tag">Legasi untuk waris</div>
+        <h3>PruBSN WarisanGold</h3>
+        <div class="plan-kind">Pelan berkaitan pelaburan</div>
+        <p class="plan-desc">Perlindungan bernilai tinggi untuk tinggalkan legasi yang bermakna kepada keluarga.</p>
+        <ul class="plan-list">
+          <li class="plan-li">Perlindungan dari RM350,000 (kanak-kanak dari RM250,000)</li>
+          <li class="plan-li">Tiada pemeriksaan perubatan sehingga RM4 juta (ikut umur masuk)</li>
+          <li class="plan-li">Manfaat Khairat RM3,000 &amp; Badal Haji RM3,000</li>
+        </ul>
+        <a href="#tempah" class="plan-btn" data-plan="PruBSN WarisanGold">Tanya lanjut</a>
+      </div>
+      <div class="plan-card" data-needs="legasi">
+        <div class="plan-tag">Simpanan berjadual</div>
+        <h3>PruBSN Aspirasi</h3>
+        <div class="plan-kind">Simpanan, pelaburan &amp; perlindungan</div>
+        <p class="plan-desc">Untuk matlamat jangka panjang — haji, pendidikan anak atau persaraan — dengan perlindungan sekali.</p>
+        <ul class="plan-list">
+          <li class="plan-li">Bayaran tunai tahunan bermula hujung tahun ke-2</li>
+          <li class="plan-li">Tempoh pilihan 15, 20, 25 atau 30 tahun</li>
+          <li class="plan-li">Manfaat tambahan untuk kematian akibat kemalangan</li>
+        </ul>
+        <a href="#tempah" class="plan-btn" data-plan="PruBSN Aspirasi">Tanya lanjut</a>
       </div>
     </div>
+    <p class="plans-note">Ringkasan di atas berdasarkan brosur produk Prudential BSN Takaful dan tertakluk kepada terma, syarat, pengecualian dan penilaian underwriting. Bagi pelan berkaitan pelaburan, nilai unit tidak dijamin dan prestasi dana lepas bukan petunjuk prestasi masa depan. Sila rujuk Helaian Pendedahan Produk sebelum membuat keputusan.</p>
   </div>
 </section>
 
@@ -481,9 +573,9 @@
 
         <div class="mf-two">
           <div class="mf-row">
-            <label for="fAge">Umur</label>
-            <input class="mf-input" type="number" id="fAge" name="umur" placeholder="30" min="18" max="80">
-            <div class="mf-error" id="err-fAge">Umur antara 18–80</div>
+            <label for="fAge">Umur peserta</label>
+            <input class="mf-input" type="number" id="fAge" name="umur" placeholder="30" min="0" max="80">
+            <div class="mf-error" id="err-fAge">Umur antara 0–80</div>
           </div>
           <div class="mf-row">
             <label for="fBudget">Anggaran budget/bulan</label>
@@ -503,10 +595,15 @@
           <label for="fPlan">Plan yang diminati</label>
           <select class="mf-select" id="fPlan" name="plan">
             <option value="">Pilih plan</option>
-            <option value="Takaful Nyawa">Takaful Nyawa</option>
-            <option value="Takaful Kesihatan">Takaful Kesihatan</option>
-            <option value="Takaful Pendidikan">Takaful Pendidikan</option>
             <option value="Belum pasti, nak cadangan Iqa">Belum pasti, nak cadangan Iqa</option>
+            <option value="PruBSN DamaiGenZ">DamaiGenZ — pakej permulaan</option>
+            <option value="PruBSN AnugerahMax">AnugerahMax — asas + manfaat pilihan</option>
+            <option value="PruBSN Sinar">Sinar — pakej lengkap</option>
+            <option value="PruBSN Asas360">Asas360 — keluarga &amp; kandungan</option>
+            <option value="PruBSN Anggun">Anggun — khas wanita</option>
+            <option value="PruBSN Kritikal Care360">Kritikal Care360 — penyakit kritikal</option>
+            <option value="PruBSN WarisanGold">WarisanGold — legasi</option>
+            <option value="PruBSN Aspirasi">Aspirasi — simpanan</option>
           </select>
           <div class="mf-error" id="err-fPlan">Sila pilih plan yang diminati</div>
         </div>
@@ -522,7 +619,15 @@
 
         <div class="mf-row">
           <label for="fNote">Nota tambahan (pilihan)</label>
-          <textarea class="mf-textarea" id="fNote" name="nota" placeholder="Contoh: waktu petang lebih sesuai untuk saya"></textarea>
+          <textarea class="mf-textarea" id="fNote" name="nota" placeholder="Contoh: pelan untuk anak umur 3 tahun, atau saya sedang mengandung 4 bulan"></textarea>
+        </div>
+
+        <div class="mf-row">
+          <label class="mf-consent" id="consentLabel">
+            <input type="checkbox" id="fConsent" name="persetujuan_pdpa" value="Setuju">
+            <span>Saya bersetuju maklumat ini digunakan oleh Iqa (ejen Prudential BSN Takaful) untuk menyediakan quotation dan menghubungi saya melalui WhatsApp, selaras dengan Akta Perlindungan Data Peribadi 2010.</span>
+          </label>
+          <div class="mf-error" id="err-fConsent">Sila tandakan persetujuan untuk teruskan</div>
         </div>
 
         <button type="submit" class="mf-submit" id="submitBtn">
@@ -596,7 +701,7 @@
     if(!phoneOk) ok = false;
 
     const ageNum = Number(age);
-    const ageOk = age !== '' && ageNum >= 18 && ageNum <= 80;
+    const ageOk = age !== '' && ageNum >= 0 && ageNum <= 80;
     setError('fAge', !ageOk);
     if(!ageOk) ok = false;
 
@@ -606,12 +711,45 @@
     setError('fPlan', plan === '');
     if(plan === '') ok = false;
 
+    const consentOk = document.getElementById('fConsent').checked;
+    document.getElementById('consentLabel').classList.toggle('err', !consentOk);
+    document.getElementById('err-fConsent').classList.toggle('show', !consentOk);
+    if(!consentOk) ok = false;
+
     return ok;
   }
 
   ['fName','fPhone','fAge','fBudget','fPlan'].forEach(id => {
     document.getElementById(id).addEventListener('input', () => setError(id, false));
     document.getElementById(id).addEventListener('change', () => setError(id, false));
+  });
+  document.getElementById('fConsent').addEventListener('change', () => {
+    document.getElementById('consentLabel').classList.remove('err');
+    document.getElementById('err-fConsent').classList.remove('show');
+  });
+
+  // "Tanya lanjut" pada kad pelan → pilih pelan tu dalam borang
+  document.querySelectorAll('.plan-btn[data-plan]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const sel = document.getElementById('fPlan');
+      sel.value = btn.getAttribute('data-plan');
+      setError('fPlan', false);
+    });
+  });
+
+  // Tapis pelan ikut keperluan
+  const chips = document.querySelectorAll('.need-chip');
+  const cards = document.querySelectorAll('#plansGrid .plan-card');
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      const need = chip.getAttribute('data-need');
+      cards.forEach(card => {
+        const match = need === 'all' || card.getAttribute('data-needs').split(' ').includes(need);
+        card.classList.toggle('hide', !match);
+      });
+    });
   });
 
   form.addEventListener('submit', async function(e){
@@ -665,7 +803,8 @@
       <span class="eyebrow">Sokongan manusia</span>
       <h2 style="font-size:clamp(28px,3.6vw,38px);">Nak tanya manusia terus? Boleh.</h2>
       <p style="color:var(--text-secondary); font-size:16px; margin-top:14px; max-width:420px; line-height:1.5;">AI membantu untuk soalan am, tapi jika anda nak berbincang terus dengan ejen, WhatsApp kami bila-bila masa. Kami akan balas secepat mungkin.</p>
-      <a href="#" class="btn-primary" style="margin-top:26px; display:inline-flex;">WhatsApp kami sekarang</a>
+      <a href="https://wa.me/601156771534?text=Hai%20Iqa%2C%20saya%20nak%20tanya%20tentang%20pelan%20takaful." target="_blank" rel="noopener" class="btn-primary" style="margin-top:26px; display:inline-flex;">WhatsApp Iqa sekarang</a>
+      <div style="font-size:13px; color:var(--text-tertiary); margin-top:12px;">011-5677 1534</div>
     </div>
     <div class="wa-card">
       <div class="wa-msg out">Hi, saya nak tanya pasal plan kesihatan untuk mak saya, umur 55.</div>
@@ -679,9 +818,13 @@
 <section class="trust">
   <div class="wrap trust-grid">
     <div><div class="trust-num">100%</div><div class="trust-label">Sesi dalam talian</div></div>
-    <div><div class="trust-num">24j</div><div class="trust-label">Reminder automatik sebelum sesi</div></div>
+    <div><div class="trust-num">8</div><div class="trust-label">Pelan Prudential BSN Takaful untuk dipilih</div></div>
     <div><div class="trust-num">0</div><div class="trust-label">Obligasi untuk bertanya sahaja</div></div>
-    <div><div class="trust-num" style="font-size:22px;">No. Tauliah</div><div class="trust-label">XXXXXXX (letak nombor sebenar)</div></div>
+    <div>
+      <div class="trust-num" style="font-size:24px;">MTA-J67304</div>
+      <div class="trust-label">No. Pendaftaran Ejen, Persatuan Takaful Malaysia</div>
+      <a class="trust-link" href="https://sso.ism.net.my/MTAOARS/Enquiry/Search" target="_blank" rel="noopener">Semak status pendaftaran →</a>
+    </div>
   </div>
 </section>
 
@@ -701,7 +844,7 @@
     <div class="foot-grid">
       <div>
         <div class="foot-brand">iqacares</div>
-        <p class="foot-note">Iqa, Ejen Bertauliah Prudential BSN Takaful Berhad. Maklumat di laman ini bersifat umum dan bukan nasihat kewangan muktamad — sila rujuk semasa sesi runding untuk cadangan yang disesuaikan.</p>
+        <p class="foot-note">Amirah Syafiqa (Iqa), Ejen Berdaftar Prudential BSN Takaful Berhad · No. MTA: MTA-J67304. Maklumat di laman ini bersifat umum dan bukan nasihat kewangan muktamad — sila rujuk semasa sesi runding untuk cadangan yang disesuaikan.</p>
       </div>
       <div class="foot-links">
         <a href="#tentang">Tentang Iqa</a>
@@ -710,6 +853,7 @@
         <a href="https://www.tiktok.com/@iqacares" target="_blank" rel="noopener">@iqacares</a>
       </div>
     </div>
+    <p class="foot-legal">Prudential BSN Takaful Berhad ialah ahli Perbadanan Insurans Deposit Malaysia (PIDM). Manfaat yang dibayar di bawah sijil yang layak dilindungi oleh PIDM tertakluk kepada had perlindungan. Sila rujuk Brosur Sistem Perlindungan Manfaat Takaful dan Insurans PIDM atau hubungi Prudential BSN Takaful Berhad atau PIDM (layari <a href="https://www.pidm.gov.my" target="_blank" rel="noopener" style="text-decoration:underline;">www.pidm.gov.my</a>).</p>
     <div class="foot-bottom">
       <span>© 2026 iqacares. Bukan laman rasmi Prudential BSN Takaful Berhad.</span>
       <span>Dibina dengan ❤ untuk keluarga Malaysia</span>
