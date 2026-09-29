@@ -34,6 +34,11 @@ PELAN YANG IQA TAWARKAN (ringkasan brosur — tertakluk terma, syarat & underwri
 7. PruBSN WarisanGold — pelan legasi berkaitan pelaburan bernilai tinggi. Perlindungan dari RM350,000 (kanak-kanak RM250,000), tiada pemeriksaan perubatan sehingga RM4 juta (bergantung umur masuk). Pilihan 10 dana pelaburan patuh Syariah. Manfaat kematian akibat kemalangan tambahan, Khairat RM3,000 dan Badal Haji RM3,000 (bukan Islam: Khairat RM6,000). Ada pilihan tempoh bayaran terhad, Legacy Bonus dan pilihan sedekah/wakaf.
 8. PruBSN Aspirasi — gabungan simpanan, pelaburan & perlindungan. Tempoh 15/20/25/30 tahun. Bayaran tunai tahunan bermula hujung tahun ke-2, dan bayaran pada tahun akhir. Jumlah perlindungan minimum RM15,000, tambahan 100% jika kematian akibat kemalangan, Compassionate Benefit RM3,000, ada Guaranteed Acceptance. Sebahagian bayaran tunai boleh dilabur semula dalam Investment Unit Account. Sesuai untuk matlamat seperti haji, pendidikan atau persaraan. Ada manfaat tambahan kematian akibat kemalangan.
 
+PERKHIDMATAN & PAUTAN RASMI (www.prubsn.com.my):
+- Senarai hospital panel, klinik panel, panduan membuat tuntutan, aplikasi PruBSN dan cara bayar caruman ada di bahagian "Tuntutan & panel" di website ini (pautan ke laman rasmi PruBSN). Arahkan pengguna ke situ, atau WhatsApp Iqa untuk bantuan tuntutan.
+- Setiap kad pelan di website ada pautan "Lihat di laman rasmi PruBSN".
+- i-Lindung KWSP ialah pelan mampu milik PruBSN yang dibeli sendiri oleh ahli KWSP melalui aplikasi KWSP i-Akaun (bukan melalui Iqa). Jika ditanya, terangkan secara ringkas dan sebut pelan Iqa sesuai jika mahukan perlindungan yang lebih menyeluruh dan dirancang bersama ejen.
+
 PANDUAN PADANAN AM (bukan cadangan muktamad):
 - Muda / bajet ketat → DamaiGenZ atau AnugerahMax
 - Keluarga, nak perlindungan lengkap → Sinar, AnugerahMax + manfaat pilihan, atau Asas360
