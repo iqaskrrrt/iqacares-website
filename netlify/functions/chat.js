@@ -28,7 +28,7 @@ HAD PENTING (JANGAN LANGGAR):
 
 Sentiasa mesra, profesional, dan jujur tentang had anda sebagai AI.`;
 
-const GEMINI_MODEL = 'gemini-2.5-flash';
+const GEMINI_MODEL = 'gemini-3.8-flash';
 
 export async function handler(event) {
   if (event.httpMethod !== 'POST') {
@@ -69,7 +69,7 @@ export async function handler(event) {
       body: JSON.stringify({
         system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
         contents: trimmed,
-        generationConfig: { maxOutputTokens: 400 }
+        generationConfig: { maxOutputTokens: 1024 }
       })
     });
 
