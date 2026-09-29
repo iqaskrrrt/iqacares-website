@@ -63,15 +63,23 @@ export async function handler(event) {
 
   try {
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${apiKey}`;
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
-        contents: trimmed,
-        generationConfig: { maxOutputTokens: 1024 }
-      })
+    const payload = JSON.stringify({
+      system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+      contents: trimmed,
+      generationConfig: { maxOutputTokens: 1024 }
     });
+
+    // Cuba sehingga 3 kali jika Google sibuk (503) atau had kadar (429)
+    let response;
+    for (let attempt = 0; attempt < 3; attempt++) {
+      response = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: payload
+      });
+      if (response.status !== 503 && response.status !== 429) break;
+      await new Promise(r => setTimeout(r, 1500 * (attempt + 1)));
+    }
 
     if (!response.ok) {
       const errText = await response.text();
