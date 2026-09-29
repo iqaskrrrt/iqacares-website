@@ -9,8 +9,8 @@
 //    endpoint at yoursite.com/.netlify/functions/chat
 //    (netlify.toml redirects /api/chat there too, so the site code doesn't change)
 //
-// Free tier limit: 1,500 requests/day on Gemini 2.5 Flash — more than enough
-// for a part-time agent's website. No charge, no expiry.
+// Model: cuba Gemini 3.5 Flash-Lite dahulu (laju, ringan); jika Google sibuk,
+// fallback ke Gemini 3.8 Flash. Free tier — tiada caj.
 
 const SYSTEM_PROMPT = `Anda ialah Pembantu AI di laman web iqacares, milik Iqa, seorang ejen bertauliah Prudential BSN Takaful.
 
@@ -28,7 +28,8 @@ HAD PENTING (JANGAN LANGGAR):
 
 Sentiasa mesra, profesional, dan jujur tentang had anda sebagai AI.`;
 
-const GEMINI_MODEL = 'gemini-3.8-flash';
+// Cuba model pertama dulu; jika sibuk, guna model seterusnya
+const GEMINI_MODELS = ['gemini-3.5-flash-lite', 'gemini-3.8-flash'];
 
 export async function handler(event) {
   if (event.httpMethod !== 'POST') {
@@ -62,23 +63,26 @@ export async function handler(event) {
   }));
 
   try {
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${apiKey}`;
     const payload = JSON.stringify({
       system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
       contents: trimmed,
       generationConfig: { maxOutputTokens: 1024 }
     });
 
-    // Cuba sehingga 3 kali jika Google sibuk (503) atau had kadar (429)
+    // Cuba setiap model (2 cubaan setiap satu) jika Google sibuk (503) atau had kadar (429)
     let response;
-    for (let attempt = 0; attempt < 3; attempt++) {
-      response = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: payload
-      });
-      if (response.status !== 503 && response.status !== 429) break;
-      await new Promise(r => setTimeout(r, 1500 * (attempt + 1)));
+    for (const model of GEMINI_MODELS) {
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+      for (let attempt = 0; attempt < 2; attempt++) {
+        response = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: payload
+        });
+        if (response.status !== 503 && response.status !== 429) break;
+        await new Promise(r => setTimeout(r, 1000));
+      }
+      if (response.ok) break;
     }
 
     if (!response.ok) {
