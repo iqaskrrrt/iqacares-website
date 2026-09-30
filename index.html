@@ -2,7 +2,7 @@
 <html lang="ms">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content">
 <title>iqacares — Ejen Bertauliah Prudential BSN Takaful</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -1001,7 +1001,7 @@
   @keyframes cwBounce{0%,60%,100%{transform:translateY(0); opacity:.5;} 30%{transform:translateY(-4px); opacity:1;}}
   #chatForm{display:flex; gap:8px; padding:12px; border-top:1px solid var(--line); flex-shrink:0;}
   #chatInput{
-    flex:1; border:1px solid var(--line); border-radius:980px; padding:10px 16px; font-size:13.8px;
+    flex:1; min-width:0; border:1px solid var(--line); border-radius:980px; padding:10px 16px; font-size:16px;
     font-family:inherit; background:var(--bg-soft); color:var(--text);
   }
   #chatInput:focus{outline:none; border-color:var(--accent); background:var(--white);}
@@ -1013,7 +1013,8 @@
   #chatSend:disabled{opacity:0.5; cursor:default;}
   #chatSend svg{width:16px; height:16px;}
   @media (max-width:480px){
-    #chatPanel{right:16px; bottom:128px; width:calc(100vw - 32px); max-height:calc(100vh - 150px);}
+    #chatPanel{right:16px; bottom:128px; width:calc(100vw - 32px); height:calc(100dvh - 150px); max-height:520px;}
+    .mf-input, .mf-select, .mf-textarea{font-size:16px;}
     #chatFab{right:16px; bottom:64px;}
   }
 </style>
