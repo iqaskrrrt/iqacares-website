@@ -2,689 +2,975 @@
 <html lang="ms">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content">
 <title>iqacares — Ejen Bertauliah Prudential BSN Takaful</title>
+<meta name="description" content="Iqa, ejen bertauliah Prudential BSN Takaful. Tanya Pembantu AI, bandingkan pelan dan tempah sesi runding Google Meet, semuanya dalam talian.">
+<meta name="theme-color" content="#F2F6F3" id="metaTheme">
+<script>
+  // Tetapkan tema sebelum halaman dilukis supaya tiada kelipan
+  (function(){
+    var t = null;
+    try{ t = localStorage.getItem('iqacares-theme'); }catch(e){}
+    if(t !== 'light' && t !== 'dark'){
+      t = (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+    document.documentElement.classList.add('js');
+  })();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#FFFFFF;
-    --bg-soft:#F5F5F7;
-    --bg-dark:#1D1D1F;
-    --text:#1D1D1F;
-    --text-secondary:#6E6E73;
-    --text-tertiary:#86868B;
-    --accent:#0A6E4E;
-    --accent-hover:#08573F;
-    --line:#D2D2D7;
-    --white:#FFFFFF;
+    --bg:#F2F6F3; --surface:#FFFFFF; --surface-2:#E6EEE9;
+    --ink:#0F2620; --ink-2:#465C54; --ink-3:#5E746B;
+    --line:#D2DED7;
+    --brand:#0B6B4F; --brand-hover:#08533D; --on-brand:#FFFFFF; --brand-soft:#D8EDE3;
+    --gold:#8A5E00; --gold-bg:#FBE9B7;
+    --danger:#B3261E; --danger-bg:#FDECEA;
+    --shadow:0 18px 40px -22px rgba(15,38,32,.35);
+    --bar-bg:rgba(242,246,243,.88);
+    --display:-apple-system,BlinkMacSystemFont,'SF Pro Display','Inter','Helvetica Neue',Arial,sans-serif;
+    --body:-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Helvetica Neue',Arial,sans-serif;
+    --tabbar:64px;
+    color-scheme:light;
+  }
+  :root[data-theme="dark"]{
+    --bg:#0A1512; --surface:#11211C; --surface-2:#182D26;
+    --ink:#E8F1EC; --ink-2:#A9BDB4; --ink-3:#8CA197;
+    --line:#263C32;
+    --brand:#57CFA2; --brand-hover:#7ADDB8; --on-brand:#06231A; --brand-soft:#17352B;
+    --gold:#F0BE55; --gold-bg:#3A2F12;
+    --danger:#FF9B92; --danger-bg:#3A1614;
+    --shadow:0 18px 40px -20px rgba(0,0,0,.7);
+    --bar-bg:rgba(10,21,18,.88);
+    color-scheme:dark;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
+  html{-webkit-text-size-adjust:100%;}
   body{
-    font-family:-apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue', sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    line-height:1.47;
-    -webkit-font-smoothing:antialiased;
-    font-weight:400;
+    font-family:var(--body); background:var(--bg); color:var(--ink);
+    line-height:1.47; font-size:16px; letter-spacing:-0.011em; -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
   }
-  h1,h2,h3{font-weight:600; letter-spacing:-0.022em; color:var(--text);}
+  h1,h2,h3{font-family:var(--display); font-weight:600; letter-spacing:-0.022em; line-height:1.1; color:var(--ink);}
   a{color:inherit; text-decoration:none;}
   img{max-width:100%; display:block;}
-  .wrap{max-width:1040px; margin:0 auto; padding:0 22px;}
-  .eyebrow{
-    font-size:14px; letter-spacing:-0.01em;
-    color:var(--accent); font-weight:600; margin-bottom:12px; display:block;
-  }
-  /* ---------- NAV ---------- */
-  header{
-    position:sticky; top:0; z-index:50;
-    background:rgba(255,255,255,0.8); backdrop-filter:saturate(180%) blur(20px);
-    border-bottom:1px solid rgba(0,0,0,0.06);
-  }
-  nav.wrap{
-    display:flex; align-items:center; justify-content:space-between;
-    height:52px; max-width:1040px;
-  }
-  .brand{display:flex; align-items:center; gap:8px;}
-  .brand-mark{
-    width:24px; height:24px; border-radius:7px;
-    background:var(--text); color:var(--white);
-    font-size:10.5px; font-weight:700; letter-spacing:0.01em;
-    display:flex; align-items:center; justify-content:center;
-  }
-  .brand-name{font-size:14.5px; font-weight:600; color:var(--text); letter-spacing:-0.01em;}
-  .nav-links{display:flex; gap:28px; font-size:12.5px; font-weight:400; color:var(--text-secondary); align-items:center;}
-  .nav-links a:hover{color:var(--text);}
-  .nav-tiktok{display:flex; align-items:center; gap:6px; color:var(--text-secondary);}
-  .nav-tiktok:hover{color:var(--text);}
-  .nav-cta{
-    background:var(--text); color:var(--white); padding:7px 16px;
-    border-radius:980px; font-size:12.5px; font-weight:500; white-space:nowrap;
-  }
-  .nav-cta:hover{background:var(--accent);}
-  @media (max-width:860px){ .nav-links{display:none;} }
+  button{font-family:inherit; color:inherit;}
+  [hidden]{display:none !important;}
+  :focus-visible{outline:2px solid var(--brand); outline-offset:3px; border-radius:6px;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 20px;}
+  .muted{color:var(--ink-2);}
 
-  /* ---------- HERO ---------- */
-  .hero{position:relative; overflow:hidden; padding:120px 0 90px; text-align:center;}
-  .hero-intro{
-    display:inline-flex; align-items:center; gap:10px; margin-bottom:24px;
-    padding:6px 16px 6px 6px; border-radius:980px; background:var(--bg-soft);
-    font-size:13.5px; color:var(--text-secondary);
+  /* ---------- Butang ---------- */
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    min-height:46px; padding:0 22px; border-radius:14px; border:1px solid transparent;
+    font-weight:600; font-size:15px; cursor:pointer; white-space:nowrap;
   }
-  .hero-intro-avatar{
-    width:26px; height:26px; border-radius:50%; overflow:hidden; flex-shrink:0;
-  }
-  .hero-intro-avatar img{width:100%; height:100%; object-fit:cover;}
-  .hero-intro strong{color:var(--text); font-weight:600;}
-  .hero h1{
-    font-size:clamp(40px,6vw,76px); line-height:1.05; max-width:820px; margin:0 auto;
-  }
-  .hero h1 span{color:var(--accent);}
-  .hero p.lead{
-    font-size:clamp(17px,2vw,24px); color:var(--text-secondary); max-width:560px;
-    margin:20px auto 0; font-weight:400; line-height:1.4;
-  }
-  .hero-ctas{display:flex; gap:18px; margin-top:34px; flex-wrap:wrap; justify-content:center; align-items:center;}
-  .btn-primary{
-    background:var(--accent); color:var(--white); padding:13px 26px; border-radius:980px;
-    font-weight:500; font-size:15px; display:inline-flex; align-items:center; gap:6px;
-  }
-  .btn-primary:hover{background:var(--accent-hover);}
-  .btn-text{
-    color:var(--accent); font-weight:400; font-size:15px; display:inline-flex; align-items:center; gap:4px;
-  }
-  .btn-text:hover{text-decoration:underline;}
-  .btn-text svg{width:15px; height:15px;}
-  .btn-ghost{
-    border:1px solid var(--line); color:var(--text); padding:12px 25px; border-radius:980px;
-    font-weight:500; font-size:15px; background:var(--white); cursor:pointer; font-family:inherit;
-  }
-  .btn-ghost:hover{background:var(--bg-soft);}
+  .btn-solid{background:var(--brand); color:var(--on-brand);}
+  .btn-solid:hover{background:var(--brand-hover);}
+  .btn-line{background:var(--surface); border-color:var(--line); color:var(--ink);}
+  .btn-line:hover{border-color:var(--ink-3);}
+  .btn svg{width:18px; height:18px; flex-shrink:0;}
 
-  .hero-card{
-    max-width:760px; margin:72px auto 0; cursor:pointer;
-    background:var(--bg-soft); border-radius:20px;
-    padding:8px; box-shadow:0 30px 60px -30px rgba(0,0,0,0.18);
-    transition:transform .25s ease, box-shadow .25s ease;
+  /* ---------- Bar atas ---------- */
+  .top{
+    position:sticky; top:0; z-index:50; background:var(--bar-bg);
+    -webkit-backdrop-filter:blur(16px); backdrop-filter:blur(16px);
+    border-bottom:1px solid var(--line);
   }
-  .hero-card:hover{transform:translateY(-3px); box-shadow:0 36px 70px -30px rgba(0,0,0,0.22);}
-  .hero-card-inner{background:var(--white); border-radius:14px; padding:28px; text-align:left;}
-  .hero-card-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;}
-  .hero-card-head span{font-size:12.5px; font-weight:600; color:var(--text-secondary); letter-spacing:0.01em;}
-  .pulse{width:7px; height:7px; border-radius:50%; background:var(--accent); position:relative;}
-  .pulse::after{content:''; position:absolute; inset:-4px; border-radius:50%; border:1.4px solid var(--accent); opacity:0.4;}
-  .chat-bubble{
-    background:var(--bg-soft); border-radius:14px; padding:12px 16px; font-size:14px;
-    color:var(--text); margin-bottom:10px; max-width:88%;
+  .top-in{display:flex; align-items:center; gap:16px; height:58px;}
+  .brand{display:flex; align-items:center; gap:9px; margin-right:auto;}
+  .brand img{width:30px; height:30px; border-radius:50%; object-fit:cover; border:2px solid var(--brand);}
+  .brand span{font-family:var(--display); font-weight:700; font-size:18px; letter-spacing:-0.02em;}
+  .top-tabs{display:none; gap:4px;}
+  .top-tabs a{padding:8px 14px; border-radius:10px; font-size:14px; font-weight:500; color:var(--ink-2);}
+  .top-tabs a:hover{color:var(--ink);}
+  .top-tabs a[aria-current="page"]{background:var(--brand-soft); color:var(--ink); font-weight:600;}
+  .icon-btn{
+    width:40px; height:40px; border-radius:12px; border:1px solid var(--line); background:var(--surface);
+    display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0;
   }
-  .chat-bubble.me{background:var(--text); color:var(--white); margin-left:auto;}
-  .hero-card-foot{
-    margin-top:16px; padding-top:16px; border-top:1px solid var(--line);
-    font-size:12px; color:var(--text-tertiary);
-  }
+  .icon-btn svg{width:19px; height:19px;}
+  .icon-btn:hover{border-color:var(--ink-3);}
+  .i-sun{display:none;}
+  [data-theme="dark"] .i-sun{display:block;}
+  [data-theme="dark"] .i-moon{display:none;}
+  .top .btn{display:none; min-height:40px; padding:0 16px; font-size:14px; border-radius:12px;}
 
-  /* ---------- SECTION SHARED ---------- */
-  section{padding:100px 0;}
-  .sec-head{max-width:600px; margin:0 auto 56px; text-align:center;}
-  .sec-head h2{font-size:clamp(30px,4vw,44px); letter-spacing:-0.02em;}
-  .sec-head p{color:var(--text-secondary); font-size:17px; margin-top:14px; line-height:1.5;}
+  /* ---------- Tab bawah (telefon) ---------- */
+  .tabbar{
+    position:fixed; left:0; right:0; bottom:0; z-index:60;
+    display:grid; grid-template-columns:repeat(4,1fr);
+    background:var(--bar-bg); -webkit-backdrop-filter:blur(16px); backdrop-filter:blur(16px);
+    border-top:1px solid var(--line);
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  .tabbar a{
+    height:var(--tabbar); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px;
+    font-size:11.5px; font-weight:500; color:var(--ink-3);
+  }
+  .tabbar svg{width:22px; height:22px;}
+  .tabbar a[aria-current="page"]{color:var(--brand); font-weight:700;}
+  body{padding-bottom:calc(var(--tabbar) + env(safe-area-inset-bottom));}
 
-  /* ---------- HOW IT WORKS ---------- */
-  .flow{background:var(--bg-soft);}
-  .flow-steps{display:grid; grid-template-columns:repeat(4,1fr); gap:36px;}
-  .flow-num{
-    font-size:13px; color:var(--accent); font-weight:600;
-    width:32px; height:32px; border-radius:50%; background:var(--white);
-    display:flex; align-items:center; justify-content:center;
-    margin-bottom:20px;
-  }
-  .flow-step h3{font-size:18px; margin-bottom:8px; font-weight:600;}
-  .flow-step p{font-size:14.5px; color:var(--text-secondary); line-height:1.5;}
-  @media (max-width:860px){ .flow-steps{grid-template-columns:1fr 1fr; gap:32px;} }
-  @media (max-width:560px){ .flow-steps{grid-template-columns:1fr;} }
+  /* ---------- Paparan ---------- */
+  .view{padding:28px 0 36px;}
+  .view-head{margin-bottom:20px; max-width:620px;}
+  .view-head h2{font-size:clamp(26px,5vw,38px);}
+  .view-head p{color:var(--ink-2); margin-top:8px; font-size:15px;}
 
-  /* ---------- ABOUT ---------- */
-  .about-grid{display:grid; grid-template-columns:0.55fr 1fr; gap:56px; align-items:center;}
-  .about-avatar-block{display:flex; flex-direction:column; align-items:center; gap:18px; text-align:center;}
-  .about-avatar{
-    width:132px; height:132px; border-radius:50%; background:var(--bg-soft);
-    overflow:hidden; flex-shrink:0;
+  /* ---------- Utama ---------- */
+  .hero{display:grid; gap:22px;}
+  .hero-hello{display:flex; align-items:center; gap:10px; font-size:14px; color:var(--ink-2); margin-bottom:14px;}
+  .hero-hello b{color:var(--ink); font-weight:600;}
+  .hero h1{font-size:clamp(32px,8.4vw,60px);}
+  .hero .lead{color:var(--ink-2); margin-top:14px; font-size:clamp(15px,1.5vw,18px); max-width:520px;}
+  .hero-cta{display:flex; flex-wrap:wrap; gap:10px; margin-top:20px;}
+  .cred{
+    display:flex; flex-wrap:wrap; align-items:center; gap:6px 12px; margin-top:18px; font-size:13px; color:var(--ink-2);
   }
-  .about-avatar img{width:100%; height:100%; object-fit:cover;}
-  .about-tiktok{
-    display:inline-flex; align-items:center; gap:7px; font-size:13px; font-weight:500;
-    color:var(--text); background:var(--bg-soft); padding:9px 16px; border-radius:980px;
-  }
-  .about-tiktok:hover{background:var(--line);}
-  @media (max-width:860px){ .about-grid{grid-template-columns:1fr; text-align:center;} .about-grid p{margin:0 auto;} }
+  .cred b{color:var(--ink); font-weight:600;}
+  .cred a{color:var(--brand); font-weight:600; text-decoration:underline; text-underline-offset:3px;}
 
-  /* ---------- PLANS ---------- */
-  .plans-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
-  .plan-card{
-    background:var(--bg-soft); border-radius:18px; padding:30px;
-    display:flex; flex-direction:column; transition:transform .25s ease, opacity .25s ease;
+  .ask{
+    background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:18px;
+    box-shadow:var(--shadow);
   }
-  .plan-card.dim{opacity:.28;}
-  .plan-card.hide{display:none;}
-  .need-chips{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin:-24px auto 40px; max-width:760px;}
-  .need-chip{
-    padding:9px 16px; border-radius:980px; border:1px solid var(--line); background:var(--white);
-    font-size:13.5px; color:var(--text-secondary); cursor:pointer; font-family:inherit;
+  .ask-top{display:flex; align-items:center; gap:10px; margin-bottom:12px;}
+  .ask-top img{width:38px; height:38px; border-radius:50%; object-fit:cover;}
+  .ask-top h2{font-size:17px; font-family:var(--body); font-weight:700; letter-spacing:-0.01em;}
+  .ask-top p{font-size:12.5px; color:var(--ink-2); display:flex; align-items:center; gap:6px;}
+  .dot{width:7px; height:7px; border-radius:50%; background:var(--brand); display:inline-block;}
+  .ask-field{
+    width:100%; display:flex; align-items:center; justify-content:space-between; gap:10px; text-align:left;
+    min-height:50px; padding:0 8px 0 16px; border-radius:14px; border:1px solid var(--line);
+    background:var(--bg); color:var(--ink-3); font-size:15px; cursor:pointer;
   }
-  .need-chip:hover{color:var(--text); border-color:var(--text-tertiary);}
-  .need-chip.active{background:var(--text); border-color:var(--text); color:var(--white); font-weight:500;}
-  .plan-kind{font-size:11.5px; color:var(--text-tertiary); margin-top:-4px; margin-bottom:12px;}
-  .plan-card.featured .plan-kind{color:#86868B;}
-  .plan-official{display:block; text-align:center; font-size:12.5px; color:var(--text-secondary); margin-top:12px;}
-  .plan-official:hover{color:var(--accent); text-decoration:underline;}
-  .plan-card.featured .plan-official{color:#A1A1A6;}
-  .plan-card.featured .plan-official:hover{color:#7DD8B4;}
-  .svc{background:var(--bg-soft);}
-  .svc-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
-  .svc-card{background:var(--white); border-radius:16px; padding:24px; display:flex; flex-direction:column; gap:6px; transition:transform .2s ease, box-shadow .2s ease;}
-  .svc-card:hover{transform:translateY(-3px); box-shadow:0 14px 30px -18px rgba(0,0,0,0.25);}
-  .svc-icon{font-size:22px; line-height:1; margin-bottom:6px;}
-  .svc-card h3{font-size:16.5px;}
-  .svc-card p{font-size:13.8px; color:var(--text-secondary); line-height:1.5; flex-grow:1;}
-  .svc-go{font-size:13px; color:var(--accent); font-weight:500; margin-top:8px;}
-  .svc-help{background:var(--text); color:var(--white);}
-  .svc-help h3{color:var(--white);}
-  .svc-help p{color:#A1A1A6;}
-  .svc-help .svc-go{color:#7DD8B4;}
-  @media (max-width:860px){ .svc-grid{grid-template-columns:1fr 1fr;} }
-  @media (max-width:560px){ .svc-grid{grid-template-columns:1fr;} }
-  .plans-note{font-size:12px; color:var(--text-tertiary); text-align:center; max-width:720px; margin:36px auto 0; line-height:1.6;}
-  .plan-card:hover{transform:translateY(-4px);}
-  .plan-card.featured{background:var(--text); color:var(--white);}
-  .plan-card.featured h3{color:var(--white);}
-  .plan-card.featured .plan-desc{color:#A1A1A6;}
-  .plan-card.featured .plan-li{color:#D2D2D7; border-top-color:rgba(255,255,255,0.12);}
-  .plan-card.featured .plan-li::before{color:var(--white);}
-  .plan-tag{
-    font-size:12.5px; font-weight:600; color:var(--accent); margin-bottom:16px;
+  .ask-field:hover{border-color:var(--brand);}
+  .ask-field i{
+    width:36px; height:36px; border-radius:11px; background:var(--brand); color:var(--on-brand);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
   }
-  .plan-card.featured .plan-tag{color:#7DD8B4;}
-  .plan-card h3{font-size:23px; margin-bottom:10px; letter-spacing:-0.015em;}
-  .plan-desc{font-size:14.5px; color:var(--text-secondary); margin-bottom:22px; line-height:1.5;}
-  .plan-list{list-style:none; margin-bottom:26px; flex-grow:1;}
-  .plan-li{
-    font-size:14px; color:var(--text); padding:9px 0; border-top:1px solid var(--line);
-    display:flex; gap:10px;
+  .ask-field svg{width:16px; height:16px;}
+  .ask-label{font-size:12.5px; color:var(--ink-3); margin:14px 0 8px;}
+  .ask-chips{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{
+    min-height:38px; padding:0 14px; border-radius:999px; border:1px solid var(--line); background:var(--surface);
+    font-size:13.5px; font-weight:500; color:var(--ink); cursor:pointer; white-space:nowrap;
   }
-  .plan-li:first-child{border-top:none;}
-  .plan-li::before{content:'—'; color:var(--accent); flex-shrink:0;}
-  .plan-btn{
-    text-align:center; padding:12px; border-radius:980px; background:var(--white);
-    font-weight:500; font-size:14px; color:var(--text); border:1px solid var(--line);
-  }
-  .plan-card.featured .plan-btn{background:var(--white); color:var(--text); border:none;}
-  .plan-btn:hover{background:var(--bg-soft);}
-  @media (max-width:960px){ .plans-grid{grid-template-columns:1fr 1fr;} }
-  @media (max-width:640px){ .plans-grid{grid-template-columns:1fr;} .need-chips{margin-top:-28px;} }
-  .mf-consent{display:flex; gap:10px; align-items:flex-start; font-size:12.5px; color:var(--text-secondary); line-height:1.5; cursor:pointer;}
-  .mf-consent input{margin-top:3px; width:16px; height:16px; accent-color:var(--accent); flex-shrink:0;}
-  .mf-consent.err{color:#D70015;}
-  .trust-link{color:var(--accent); font-size:12.5px; display:inline-block; margin-top:6px;}
-  .trust-link:hover{text-decoration:underline;}
-  .foot-legal{font-size:11.5px; color:var(--text-tertiary); line-height:1.6; margin-top:24px; max-width:820px;}
+  .chip:hover{border-color:var(--brand);}
+  .chip[aria-pressed="true"]{background:var(--brand); border-color:var(--brand); color:var(--on-brand); font-weight:600;}
 
-  /* ---------- FORM PREVIEW ---------- */
-  .form-sec{background:var(--bg-dark); color:var(--white);}
-  .form-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:64px; align-items:center;}
-  .form-sec .eyebrow{color:#7DD8B4;}
-  .form-sec h2{color:var(--white); font-size:clamp(28px,3.6vw,40px); letter-spacing:-0.02em;}
-  .form-sec p.lead{color:#A1A1A6; font-size:17px; margin-top:16px; max-width:440px; line-height:1.5;}
-  .form-points{margin-top:30px; display:flex; flex-direction:column; gap:16px;}
-  .form-point{display:flex; gap:14px; font-size:14.5px; color:#D2D2D7; line-height:1.5;}
-  .form-point .num{
-    width:22px; height:22px; border-radius:50%; background:rgba(125,216,180,0.14); color:#7DD8B4;
-    font-size:11.5px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px;
+  .steps{list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:26px; counter-reset:s;}
+  .steps li{
+    counter-increment:s; background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:14px;
   }
-  .mock-form{
-    background:var(--white); border-radius:18px; padding:30px; color:var(--text);
-    transition:max-width .3s ease;
+  .steps li::before{
+    content:counter(s); display:flex; align-items:center; justify-content:center;
+    width:26px; height:26px; border-radius:9px; background:var(--gold-bg); color:var(--gold);
+    font-weight:700; font-size:13px; margin-bottom:10px;
   }
-  .mf-success{
-    text-align:center; padding:20px 6px;
+  .steps h3{font-family:var(--body); font-size:14.5px; font-weight:700; letter-spacing:-0.01em;}
+  .steps p{font-size:13px; color:var(--ink-2); margin-top:3px; line-height:1.45;}
+
+  .about{
+    margin-top:26px; display:grid; gap:16px; align-items:center;
+    background:var(--brand-soft); border-radius:22px; padding:20px;
   }
-  .mf-success #calEmbed{
-    width:100%; min-height:560px; margin-top:18px; text-align:left; border-radius:12px; overflow:hidden;
+  .about-pic{display:flex; align-items:center; gap:14px;}
+  .about-pic img{width:72px; height:72px; border-radius:22px; object-fit:cover;}
+  .about h2{font-size:clamp(21px,3vw,28px);}
+  .about p{font-size:14.5px; color:var(--ink-2); margin-top:8px; max-width:560px;}
+  .tiktok{display:inline-flex; align-items:center; gap:7px; font-size:13.5px; font-weight:600; margin-top:12px; text-decoration:underline; text-underline-offset:3px;}
+  .tiktok svg{width:15px; height:15px;}
+
+  /* ---------- Pelan ---------- */
+  .filter{
+    display:flex; gap:8px; overflow-x:auto; margin:0 -20px 16px; padding:2px 20px 6px;
+    scrollbar-width:none; -webkit-overflow-scrolling:touch;
   }
-  .mf-row{margin-bottom:16px;}
-  .mf-row label{font-size:12.5px; font-weight:600; color:var(--text-secondary); display:block; margin-bottom:6px;}
+  .filter::-webkit-scrollbar{display:none;}
+  .plans{display:grid; gap:10px;}
+  .plan{background:var(--surface); border:1px solid var(--line); border-radius:18px;}
+  .plan details{display:flex; flex-direction:column; height:100%;}
+  .plan summary{list-style:none; cursor:pointer; display:flex; align-items:center; gap:12px; padding:14px 16px; border-radius:18px;}
+  .plan summary::-webkit-details-marker{display:none;}
+  .plan-top{display:flex; flex-direction:column; align-items:flex-start; flex:1; min-width:0;}
+  .plan-tag{font-size:12px; font-weight:700; color:var(--gold); background:var(--gold-bg); padding:3px 9px; border-radius:7px;}
+  .plan h3{font-size:19px; margin-top:8px;}
+  .plan-kind{font-size:12.5px; color:var(--ink-3); margin-top:2px;}
+  .plan-chev{width:34px; height:34px; border-radius:11px; background:var(--surface-2); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+  .plan-chev svg{width:16px; height:16px; transition:transform .2s ease;}
+  .plan details[open] .plan-chev svg{transform:rotate(180deg);}
+  .plan-desc{font-size:14px; color:var(--ink-2); padding:0 16px;}
+  .plan ul{list-style:none; padding:0 16px; margin-top:10px;}
+  .plan li{font-size:13.5px; padding:7px 0 7px 18px; position:relative; border-top:1px solid var(--line); color:var(--ink);}
+  .plan li::before{content:''; position:absolute; left:2px; top:14px; width:7px; height:7px; border-radius:2px; background:var(--brand);}
+  .plan-act{display:flex; align-items:center; gap:14px; padding:12px 16px 16px;}
+  .plan-act .btn{min-height:42px; padding:0 18px; font-size:14px;}
+  .plan-act a.off{font-size:12.5px; color:var(--ink-2); text-decoration:underline; text-underline-offset:3px;}
+  .plans-empty{font-size:14px; color:var(--ink-2); padding:20px 0;}
+  .fine{font-size:12px; color:var(--ink-3); line-height:1.6; margin-top:18px; max-width:760px;}
+
+  /* ---------- Tempah ---------- */
+  .book{display:grid; gap:18px; align-items:start;}
+  .book-points{list-style:none; display:grid; gap:8px; margin-top:14px;}
+  .book-points li{font-size:13.5px; color:var(--ink-2); padding-left:22px; position:relative;}
+  .book-points li::before{content:''; position:absolute; left:2px; top:7px; width:10px; height:6px; border-left:2px solid var(--brand); border-bottom:2px solid var(--brand); transform:rotate(-45deg);}
+  .card{background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:18px; box-shadow:var(--shadow);}
+  .prog{display:flex; align-items:center; gap:10px; margin-bottom:16px; font-size:13px; font-weight:600; color:var(--ink-2);}
+  .prog-bar{flex:1; height:6px; border-radius:6px; background:var(--surface-2); overflow:hidden;}
+  .prog-bar i{display:block; height:100%; width:50%; background:var(--brand); border-radius:6px; transition:width .25s ease;}
+  .mf-row{margin-bottom:14px;}
+  .mf-row label, .mf-legend{font-size:13px; font-weight:600; color:var(--ink); display:block; margin-bottom:6px;}
   .mf-input, .mf-select, .mf-textarea{
-    width:100%; border:1px solid var(--line); border-radius:10px; padding:11px 14px;
-    font-size:14px; color:var(--text); background:var(--bg-soft);
-    font-family:inherit; appearance:none; -webkit-appearance:none;
+    width:100%; min-height:48px; border:1px solid var(--line); border-radius:13px; padding:11px 14px;
+    font-size:16px; color:var(--ink); background:var(--bg); font-family:inherit; appearance:none; -webkit-appearance:none;
   }
+  .mf-input::placeholder, .mf-textarea::placeholder{color:var(--ink-3); opacity:.8;}
   .mf-select{
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%236E6E73' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-    background-repeat:no-repeat; background-position:right 14px center; padding-right:36px;
+    background-image:linear-gradient(45deg,transparent 50%,var(--ink-3) 50%),linear-gradient(135deg,var(--ink-3) 50%,transparent 50%);
+    background-position:calc(100% - 20px) 21px, calc(100% - 14px) 21px; background-size:6px 6px; background-repeat:no-repeat; padding-right:38px;
   }
-  .mf-textarea{resize:vertical; min-height:70px; font-size:14px;}
-  .mf-input:focus, .mf-select:focus, .mf-textarea:focus{
-    outline:none; border-color:var(--accent); background:var(--white);
-  }
-  .mf-input.err, .mf-select.err{border-color:#D70015; background:#FFF3F2;}
-  .mf-error{font-size:12px; color:#D70015; margin-top:5px; display:none;}
+  .mf-textarea{resize:vertical; min-height:76px;}
+  .mf-input:focus, .mf-select:focus, .mf-textarea:focus{outline:none; border-color:var(--brand); box-shadow:0 0 0 3px var(--brand-soft);}
+  .mf-input.err, .mf-select.err{border-color:var(--danger); background-color:var(--danger-bg);}
+  .mf-error{font-size:12.5px; color:var(--danger); margin-top:5px; display:none;}
   .mf-error.show{display:block;}
-  .mf-two{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
-  .mf-toggle{display:flex; gap:8px; margin-top:6px;}
+  .mf-two{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+  .mf-toggle{display:grid; grid-template-columns:1fr 1fr; gap:8px;}
   .mf-pill{
-    padding:8px 16px; border-radius:980px; border:1px solid var(--line); font-size:13px; color:var(--text-secondary);
-    background:var(--white); cursor:pointer; font-family:inherit;
+    min-height:46px; border-radius:13px; border:1px solid var(--line); font-size:14.5px; color:var(--ink-2);
+    background:var(--bg); cursor:pointer;
   }
-  .mf-pill.active{background:var(--text); border-color:var(--text); color:var(--white); font-weight:500;}
-  .mf-submit{
-    width:100%; background:var(--accent); color:var(--white); padding:13px; border-radius:980px;
-    font-weight:500; font-size:14.5px; text-align:center; margin-top:8px;
-    border:none; cursor:pointer; font-family:inherit; display:flex; align-items:center; justify-content:center; gap:8px;
-  }
-  .mf-submit:hover{background:var(--accent-hover);}
-  .mf-submit:disabled{opacity:0.6; cursor:default;}
-  .mf-note{font-size:11.5px; color:var(--text-tertiary); margin-top:12px; text-align:center;}
-  .mf-banner{
-    font-size:13px; padding:11px 14px; border-radius:10px; margin-bottom:16px; display:none;
-  }
+  .mf-pill.active{background:var(--brand-soft); border-color:var(--brand); color:var(--ink); font-weight:600;}
+  .mf-consent{display:flex; gap:10px; align-items:flex-start; font-size:12.5px; font-weight:400 !important; color:var(--ink-2) !important; line-height:1.5; cursor:pointer;}
+  .mf-consent input{margin-top:2px; width:20px; height:20px; accent-color:var(--brand); flex-shrink:0;}
+  .mf-consent.err{color:var(--danger) !important;}
+  .mf-nav{display:flex; gap:10px; margin-top:4px;}
+  .mf-nav .btn{flex:1;}
+  .mf-nav .btn-line{flex:0 0 auto;}
+  .mf-submit:disabled{opacity:.6; cursor:default;}
+  .mf-note{font-size:12px; color:var(--ink-3); margin-top:12px; text-align:center;}
+  .mf-banner{font-size:13.5px; padding:11px 14px; border-radius:12px; margin-bottom:14px; display:none; background:var(--danger-bg); color:var(--danger);}
   .mf-banner.show{display:block;}
-  .mf-banner.error{background:#FFF3F2; color:#D70015;}
-  .spin{
-    width:14px; height:14px; border:2px solid rgba(255,255,255,0.4); border-top-color:var(--white);
-    border-radius:50%; animation:spin 0.7s linear infinite; display:none;
-  }
+  .spin{width:16px; height:16px; border:2px solid currentColor; border-top-color:transparent; border-radius:50%; animation:spin .7s linear infinite; display:none;}
   .mf-submit.loading .spin{display:inline-block;}
   .mf-submit.loading .mf-submit-label{display:none;}
   @keyframes spin{to{transform:rotate(360deg);}}
-  .mf-success-icon{
-    width:52px; height:52px; border-radius:50%; background:var(--accent); color:var(--white);
-    display:flex; align-items:center; justify-content:center; margin:0 auto 18px; font-size:24px;
+  .mf-success{text-align:center; padding:8px 0;}
+  .mf-success-icon{width:48px; height:48px; border-radius:16px; background:var(--brand); color:var(--on-brand); display:flex; align-items:center; justify-content:center; margin:0 auto 14px;}
+  .mf-success-icon svg{width:24px; height:24px;}
+  .mf-success h3{font-size:21px; margin-bottom:6px;}
+  .mf-success p{font-size:14px; color:var(--ink-2);}
+  .mf-success #calEmbed{width:100%; min-height:560px; margin-top:16px; text-align:left; border-radius:14px; overflow:hidden;}
+
+  /* ---------- Bantuan ---------- */
+  .help{display:grid; gap:18px;}
+  .wa{background:var(--brand-soft); border-radius:22px; padding:20px;}
+  .wa h2{font-size:clamp(22px,3.4vw,30px);}
+  .wa p{font-size:14.5px; color:var(--ink-2); margin-top:8px; max-width:440px;}
+  .wa-row{display:flex; flex-wrap:wrap; align-items:center; gap:12px 16px; margin-top:16px;}
+  .wa-num{font-size:14px; font-weight:600;}
+  .wa-chat{margin-top:16px; border-top:1px solid var(--line); padding-top:12px;}
+  .wa-chat summary{font-size:13.5px; font-weight:600; cursor:pointer; min-height:36px; display:flex; align-items:center;}
+  .wa-msg{background:var(--surface); border-radius:14px 14px 14px 4px; padding:10px 14px; font-size:13.5px; margin-top:8px; max-width:88%;}
+  .wa-msg.out{background:var(--brand); color:var(--on-brand); margin-left:auto; border-radius:14px 14px 4px 14px;}
+  .wa-time{font-size:11px; color:var(--ink-3); margin-top:4px; text-align:right;}
+  .svc h2{font-size:clamp(20px,3vw,26px); margin-bottom:4px;}
+  .svc > p{font-size:14px; color:var(--ink-2); margin-bottom:12px;}
+  .svc-list{display:grid; gap:8px;}
+  .svc-item{
+    display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--line);
+    border-radius:16px; padding:12px 14px; min-height:60px;
   }
-  .mf-success h3{font-size:19px; margin-bottom:8px;}
-  .mf-success p{font-size:14px; color:var(--text-secondary); line-height:1.5;}
-  @media (max-width:860px){ .form-grid{grid-template-columns:1fr;} }
+  .svc-item:hover{border-color:var(--brand);}
+  .svc-ico{width:38px; height:38px; border-radius:12px; background:var(--brand-soft); color:var(--brand); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+  .svc-ico svg{width:19px; height:19px;}
+  .svc-item b{font-size:14.5px; font-weight:600; display:block;}
+  .svc-item span{font-size:12.5px; color:var(--ink-2); display:block; line-height:1.4;}
+  .svc-item > svg{width:16px; height:16px; margin-left:auto; color:var(--ink-3); flex-shrink:0;}
 
-  /* ---------- WHATSAPP ---------- */
-  .wa-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;}
-  .wa-card{
-    background:var(--bg-soft); border-radius:18px; padding:24px;
+  /* ---------- Footer ---------- */
+  footer{border-top:1px solid var(--line); padding:22px 0 26px; color:var(--ink-3); font-size:12px; line-height:1.6;}
+  footer b{color:var(--ink); font-family:var(--display); font-size:16px;}
+  .foot-links{display:flex; flex-wrap:wrap; gap:6px 18px; margin:12px 0; font-size:13px; color:var(--ink-2);}
+  .foot-links a:hover{color:var(--ink);}
+  footer p + p{margin-top:10px;}
+  footer p a{text-decoration:underline;}
+
+  /* ---------- Chatbot ---------- */
+  #chatFab{
+    position:fixed; right:16px; bottom:calc(var(--tabbar) + env(safe-area-inset-bottom) + 14px); z-index:70;
+    height:50px; padding:0 18px 0 14px; border-radius:16px; background:var(--ink); color:var(--bg);
+    border:none; cursor:pointer; display:flex; align-items:center; gap:8px; font-weight:700; font-size:14.5px;
+    box-shadow:var(--shadow);
   }
-  .wa-msg{
-    background:var(--white); border-radius:14px; padding:12px 16px; font-size:14px; margin-bottom:10px; max-width:85%;
+  #chatFab svg{width:20px; height:20px;}
+  .chat-open #chatFab{display:none;}
+  #chatPanel{
+    position:fixed; inset:0; z-index:90; height:100dvh; background:var(--surface);
+    display:flex; flex-direction:column; overflow:hidden;
+    opacity:0; transform:translateY(16px); pointer-events:none; visibility:hidden;
+    transition:opacity .2s ease, transform .2s ease, visibility 0s .2s;
   }
-  .wa-msg.out{background:var(--accent); color:var(--white); margin-left:auto;}
-  .wa-time{font-size:10.5px; color:var(--text-tertiary); margin-top:4px; text-align:right;}
-  @media (max-width:860px){ .wa-grid{grid-template-columns:1fr;} }
+  #chatPanel.open{opacity:1; transform:none; pointer-events:auto; visibility:visible; transition:opacity .2s ease, transform .2s ease;}
+  #chatPanelHead{padding:12px 14px; border-bottom:1px solid var(--line); flex-shrink:0; display:flex; align-items:center; gap:10px;}
+  #chatPanelAvatar{width:36px; height:36px; border-radius:50%; object-fit:cover;}
+  #chatPanelTitle{font-size:15px; font-weight:700;}
+  #chatPanelSub{font-size:12px; color:var(--ink-2); display:flex; align-items:center; gap:6px;}
+  #chatClose{margin-left:auto;}
+  #chatMessages{flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:10px; background:var(--bg);}
+  .cw-msg{max-width:84%; padding:10px 14px; border-radius:16px; font-size:14.5px; line-height:1.5; overflow-wrap:anywhere;}
+  .cw-msg.bot{background:var(--surface); border:1px solid var(--line); align-self:flex-start; border-bottom-left-radius:5px;}
+  .cw-msg.user{background:var(--brand); color:var(--on-brand); align-self:flex-end; border-bottom-right-radius:5px;}
+  .cw-msg strong{font-weight:700;}
+  .cw-list{margin:4px 0 4px 18px; padding:0;}
+  .cw-list li{margin:2px 0;}
+  .cw-disclaimer{font-size:11.5px; color:var(--ink-3); text-align:center; padding:2px 10px;}
+  .cw-typing{display:flex; gap:4px; padding:13px 15px; background:var(--surface); border:1px solid var(--line); border-radius:16px; align-self:flex-start;}
+  .cw-typing span{width:6px; height:6px; border-radius:50%; background:var(--ink-3); animation:cwBounce 1.1s infinite ease-in-out;}
+  .cw-typing span:nth-child(2){animation-delay:.15s;}
+  .cw-typing span:nth-child(3){animation-delay:.3s;}
+  @keyframes cwBounce{0%,60%,100%{transform:translateY(0); opacity:.5;} 30%{transform:translateY(-4px); opacity:1;}}
+  #chatForm{display:flex; gap:8px; padding:10px 12px calc(10px + env(safe-area-inset-bottom)); border-top:1px solid var(--line); flex-shrink:0; background:var(--surface);}
+  #chatInput{flex:1; min-width:0; min-height:46px; border:1px solid var(--line); border-radius:14px; padding:0 16px; font-size:16px; font-family:inherit; background:var(--bg); color:var(--ink);}
+  #chatInput:focus{outline:none; border-color:var(--brand);}
+  #chatSend{width:46px; height:46px; border-radius:14px; background:var(--brand); color:var(--on-brand); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+  #chatSend:disabled{opacity:.5; cursor:default;}
+  #chatSend svg{width:18px; height:18px;}
 
-  /* ---------- TRUST ---------- */
-  .trust{background:var(--bg-soft);}
-  .trust-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:32px; text-align:center;}
-  .trust-num{font-size:clamp(28px,3.4vw,40px); font-weight:600; letter-spacing:-0.02em;}
-  .trust-label{font-size:13.5px; color:var(--text-secondary); margin-top:8px;}
-  @media (max-width:860px){ .trust-grid{grid-template-columns:1fr 1fr;} }
-
-  /* ---------- CTA ---------- */
-  .final-cta{text-align:center;}
-  .final-cta h2{font-size:clamp(32px,4.4vw,48px); max-width:640px; margin:0 auto 16px; letter-spacing:-0.02em;}
-  .final-cta p{color:var(--text-secondary); font-size:17px; max-width:460px; margin:0 auto 34px;}
-  .final-btns{display:flex; gap:24px; justify-content:center; flex-wrap:wrap; align-items:center;}
-
-  /* ---------- FOOTER ---------- */
-  footer{background:var(--bg-soft); color:var(--text-secondary); padding:44px 0 28px; border-top:1px solid var(--line);}
-  .foot-grid{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:24px;}
-  .foot-brand{color:var(--text); font-size:14.5px; font-weight:600; margin-bottom:8px;}
-  .foot-note{font-size:12px; max-width:360px; color:var(--text-tertiary); line-height:1.5;}
-  .foot-links{display:flex; flex-wrap:wrap; gap:12px 24px; font-size:12.5px;}
-  .foot-links a:hover{color:var(--text);}
-  .foot-bottom{
-    margin-top:32px; padding-top:18px; border-top:1px solid var(--line);
-    font-size:11.5px; color:var(--text-tertiary); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  /* ---------- Skrin lebar ---------- */
+  @media (min-width:900px){
+    body{padding-bottom:0;}
+    .tabbar{display:none;}
+    .top-in{height:64px;}
+    .top-tabs{display:flex;}
+    .top .btn{display:inline-flex;}
+    .view{padding:44px 0 56px;}
+    .hero{grid-template-columns:1.1fr .9fr; gap:48px; align-items:center;}
+    .ask{padding:24px;}
+    .steps{grid-template-columns:repeat(4,1fr); gap:14px; margin-top:44px;}
+    .steps li{padding:18px;}
+    .about{grid-template-columns:auto 1fr; gap:28px; padding:28px; margin-top:28px;}
+    .about-pic img{width:120px; height:120px; border-radius:32px;}
+    .filter{flex-wrap:wrap; overflow:visible; margin:0 0 20px; padding:0;}
+    .plans{grid-template-columns:repeat(3,1fr); gap:16px;}
+    .plan summary{pointer-events:none; padding:22px 22px 10px;}
+    .plan-chev{display:none;}
+    .plan-desc, .plan ul{padding:0 22px;}
+    .plan-act{padding:14px 22px 22px; margin-top:auto;}
+    .book{grid-template-columns:.8fr 1.2fr; gap:48px;}
+    .card{padding:28px;}
+    .help{grid-template-columns:.9fr 1.1fr; gap:28px; align-items:start;}
+    .wa{padding:28px;}
+    .svc-list{grid-template-columns:1fr 1fr;}
+    #chatFab{right:24px; bottom:24px;}
+    #chatPanel{
+      inset:auto 24px 24px auto; width:390px; height:600px; max-height:calc(100dvh - 48px);
+      border-radius:22px; border:1px solid var(--line); box-shadow:var(--shadow);
+    }
+    #chatForm{padding-bottom:10px;}
   }
-
+  @media (max-width:899px){
+    .chat-open, .chat-open body{overflow:hidden;}
+  }
+  @media (max-width:520px){
+    .mf-two{grid-template-columns:1fr; gap:0;}
+  }
+  @media (max-width:340px){
+    .steps{grid-template-columns:1fr;}
+  }
   @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important;} }
 </style>
 </head>
 <body>
 
-<header>
-  <nav class="wrap">
-    <div class="brand">
-      <div class="brand-mark">IQ</div>
-      <div class="brand-name">iqacares</div>
-    </div>
-    <div class="nav-links">
-      <a href="#plan">Plan</a>
-      <a href="#tentang">Tentang Iqa</a>
-      <a href="#macam-mana">Cara ia berfungsi</a>
-      <a href="#tempah">Tempah</a>
-      <a href="#selepas">Tuntutan &amp; panel</a>
-      <a href="https://www.tiktok.com/@iqacares" target="_blank" rel="noopener" class="nav-tiktok" aria-label="TikTok iqacares">
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M16.6 5.82c-.86-.85-1.4-1.98-1.53-3.22h-3.03v13.61c0 1.4-1.14 2.54-2.55 2.54a2.55 2.55 0 0 1-2.55-2.55c0-1.4 1.14-2.54 2.55-2.54.28 0 .55.04.8.13V10.7a5.6 5.6 0 0 0-.8-.06 5.65 5.65 0 0 0-5.65 5.65A5.65 5.65 0 0 0 9.5 22a5.65 5.65 0 0 0 5.65-5.65V9.02a8.6 8.6 0 0 0 5.02 1.6V7.6a5.35 5.35 0 0 1-3.57-1.78z"/></svg>
-        @iqacares
-      </a>
-    </div>
-    <a href="#tempah" class="nav-cta">Tempah janji temu</a>
-  </nav>
+<header class="top">
+  <div class="wrap top-in">
+    <a href="#utama" class="brand" aria-label="iqacares, laman utama">
+      <img src="iqa-profile.jpg" alt="">
+      <span>iqacares</span>
+    </a>
+    <nav class="top-tabs" aria-label="Menu utama">
+      <a href="#utama" data-tab="utama">Utama</a>
+      <a href="#pelan" data-tab="pelan">Pelan</a>
+      <a href="#tempah" data-tab="tempah">Tempah</a>
+      <a href="#bantuan" data-tab="bantuan">Bantuan &amp; tuntutan</a>
+    </nav>
+    <button type="button" class="icon-btn" id="themeBtn" aria-label="Tukar ke mod gelap">
+      <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    </button>
+    <a href="#tempah" class="btn btn-solid">Tempah janji temu</a>
+  </div>
 </header>
 
-<section class="hero">
+<main>
+
+<!-- ================= UTAMA ================= -->
+<section class="view" id="utama" data-view="utama">
   <div class="wrap">
-    <div class="hero-intro">
-      <div class="hero-intro-avatar"><img src="iqa-profile.jpg" alt="Iqa"></div>
-      <span>Hai, saya <strong>Iqa</strong> — Ejen Bertauliah Prudential BSN Takaful</span>
-    </div>
-    <h1>Perlindungan keluarga anda,<br>dirancang <span>tanpa perlu keluar rumah.</span></h1>
-    <p class="lead">Tanya AI tentang plan Takaful yang sesuai, tempah sesi runding ikut waktu yang senggang, dan terima quotation penuh sebelum sesi Google Meet bersama saya.</p>
-    <div class="hero-ctas">
-      <a href="#tempah" class="btn-primary">Tempah janji temu</a>
-      <a href="#macam-mana" class="btn-text">Lihat cara ia berfungsi
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-      </a>
-    </div>
-    <div class="hero-card" id="heroChatPreview" role="button" tabindex="0" aria-label="Buka pembantu AI">
-      <div class="hero-card-inner">
-        <div class="hero-card-head">
-          <span>Pembantu AI iqacares</span>
-          <div class="pulse"></div>
+    <div class="hero">
+      <div>
+        <p class="hero-hello"><span class="dot"></span><span>Hai, saya <b>Iqa</b>, ejen bertauliah Prudential BSN Takaful</span></p>
+        <h1>Perlindungan keluarga anda, dirancang tanpa perlu keluar rumah.</h1>
+        <p class="lead">Tanya AI tentang plan Takaful yang sesuai, tempah sesi runding ikut waktu yang senggang, dan terima quotation penuh sebelum sesi Google Meet bersama saya.</p>
+        <div class="hero-cta">
+          <a href="#tempah" class="btn btn-solid">Tempah janji temu</a>
+          <a href="#pelan" class="btn btn-line">Lihat 8 pelan</a>
         </div>
-        <div class="chat-bubble me">Saya baru kahwin dan merancang nak mengandung. Ada pelan untuk ibu dan baby?</div>
-        <div class="chat-bubble">Ada! PruBSN Anggun ada manfaat Mom Care untuk kehamilan dan bayi, manakala Asas360 boleh dimulakan seawal kandungan 13 minggu. Nak saya terangkan bezanya, atau terus tempah sesi dengan Iqa untuk quotation penuh?</div>
-        <div class="hero-card-foot">Klik untuk cuba tanya sendiri →</div>
+        <p class="cred"><span>No. pendaftaran ejen <b>MTA-J67304</b></span><a href="https://sso.ism.net.my/MTAOARS/Enquiry/Search" target="_blank" rel="noopener">Semak di Persatuan Takaful Malaysia</a></p>
+      </div>
+
+      <div class="ask">
+        <div class="ask-top">
+          <img src="iqa-profile.jpg" alt="">
+          <div>
+            <h2>Tanya dulu, tiada obligasi</h2>
+            <p><span class="dot"></span>Pembantu AI iqacares, dalam talian</p>
+          </div>
+        </div>
+        <button type="button" class="ask-field chat-open-trigger" id="heroChatPreview">
+          <span>Taip soalan anda tentang Takaful</span>
+          <i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></i>
+        </button>
+        <p class="ask-label">Atau pilih situasi anda:</p>
+        <div class="ask-chips">
+          <button type="button" class="chip" data-ask="Saya baru kahwin dan merancang nak mengandung. Ada pelan untuk ibu dan baby?">Baru kahwin</button>
+          <button type="button" class="chip" data-ask="Bajet saya bawah RM100 sebulan. Pelan mana yang sesuai untuk mula?">Bajet bawah RM100</button>
+          <button type="button" class="chip" data-ask="Saya nak pelan perubatan untuk anak kecil. Apa pilihan yang ada?">Ada anak kecil</button>
+          <button type="button" class="chip" data-ask="Apa beza kad perubatan dengan perlindungan penyakit kritikal?">Medical card vs kritikal</button>
+          <button type="button" class="chip" data-ask="Saya nak simpan untuk haji atau pendidikan anak. Ada pelan simpanan?">Simpanan &amp; legasi</button>
+        </div>
+      </div>
+    </div>
+
+    <ol class="steps" id="macam-mana" aria-label="Empat langkah, dari soalan ke perlindungan">
+      <li><h3>Tanya AI</h3><p>Jawapan am tentang pelan, bila-bila masa.</p></li>
+      <li><h3>Isi borang ringkas</h3><p>Budget, pelan diminati dan maklumat asas.</p></li>
+      <li><h3>Pilih slot</h3><p>Hanya waktu yang benar-benar kosong.</p></li>
+      <li><h3>Sesi Google Meet</h3><p>Reminder WhatsApp, quotation penuh sudah sedia.</p></li>
+    </ol>
+
+    <div class="about" id="tentang">
+      <div class="about-pic"><img src="iqa-profile.jpg" alt="Iqa, ejen bertauliah Prudential BSN Takaful"></div>
+      <div>
+        <h2>Bukan call center, saya sendiri yang uruskan.</h2>
+        <p>Saya Iqa, ejen bertauliah Prudential BSN Takaful yang juga aktif kongsi tips perlindungan &amp; kewangan di TikTok. Website ni cara saya buat proses tempahan lebih senang: anda boleh tanya soalan bila-bila masa, dan setiap sesi dengan saya disediakan dengan quotation yang lengkap.</p>
+        <a href="https://www.tiktok.com/@iqacares" target="_blank" rel="noopener" class="tiktok">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82c-.86-.85-1.4-1.98-1.53-3.22h-3.03v13.61c0 1.4-1.14 2.54-2.55 2.54a2.55 2.55 0 0 1-2.55-2.55c0-1.4 1.14-2.54 2.55-2.54.28 0 .55.04.8.13V10.7a5.6 5.6 0 0 0-.8-.06 5.65 5.65 0 0 0-5.65 5.65A5.65 5.65 0 0 0 9.5 22a5.65 5.65 0 0 0 5.65-5.65V9.02a8.6 8.6 0 0 0 5.02 1.6V7.6a5.35 5.35 0 0 1-3.57-1.78z"/></svg>
+          Ikut @iqacares di TikTok
+        </a>
       </div>
     </div>
   </div>
 </section>
 
-<section class="flow" id="macam-mana">
+<!-- ================= PELAN ================= -->
+<section class="view" id="pelan" data-view="pelan">
+  <span id="plan"></span>
   <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow">Proses</span>
-      <h2>Empat langkah, dari soalan ke perlindungan</h2>
-    </div>
-    <div class="flow-steps">
-      <div class="flow-step">
-        <div class="flow-num">1</div>
-        <h3>Tanya AI</h3>
-        <p>Dapatkan jawapan am tentang jenis-jenis plan, terus di website, bila-bila masa.</p>
-      </div>
-      <div class="flow-step">
-        <div class="flow-num">2</div>
-        <h3>Isi borang ringkas</h3>
-        <p>Kongsi budget, plan yang diminati, dan maklumat asas untuk quotation lebih tepat.</p>
-      </div>
-      <div class="flow-step">
-        <div class="flow-num">3</div>
-        <h3>Tempah slot yang sesuai</h3>
-        <p>Pilih waktu daripada slot yang benar-benar kosong — dikemaskini secara langsung.</p>
-      </div>
-      <div class="flow-step">
-        <div class="flow-num">4</div>
-        <h3>Sesi Google Meet</h3>
-        <p>Terima reminder WhatsApp, dan quotation penuh sudah sedia sebelum sesi bermula.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="tentang">
-  <div class="wrap about-grid">
-    <div class="about-avatar-block">
-      <div class="about-avatar"><img src="iqa-profile.jpg" alt="Iqa, ejen bertauliah Prudential BSN Takaful"></div>
-      <a href="https://www.tiktok.com/@iqacares" target="_blank" rel="noopener" class="about-tiktok">
-        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M16.6 5.82c-.86-.85-1.4-1.98-1.53-3.22h-3.03v13.61c0 1.4-1.14 2.54-2.55 2.54a2.55 2.55 0 0 1-2.55-2.55c0-1.4 1.14-2.54 2.55-2.54.28 0 .55.04.8.13V10.7a5.6 5.6 0 0 0-.8-.06 5.65 5.65 0 0 0-5.65 5.65A5.65 5.65 0 0 0 9.5 22a5.65 5.65 0 0 0 5.65-5.65V9.02a8.6 8.6 0 0 0 5.02 1.6V7.6a5.35 5.35 0 0 1-3.57-1.78z"/></svg>
-        Ikut @iqacares di TikTok
-      </a>
-    </div>
-    <div>
-      <span class="eyebrow">Tentang Iqa</span>
-      <h2 style="font-size:clamp(26px,3.4vw,36px); margin-bottom:16px;">Bukan call center, saya sendiri yang uruskan.</h2>
-      <p style="color:var(--text-secondary); font-size:16px; line-height:1.6; max-width:480px;">Saya Iqa, ejen bertauliah Prudential BSN Takaful yang juga aktif kongsi tips perlindungan &amp; kewangan di TikTok sebagai @iqacares. Website ni cara saya buat proses tempahan lebih senang — supaya anda boleh tanya soalan bila-bila masa, dan sesi dengan saya sentiasa disediakan dengan quotation yang lengkap.</p>
-    </div>
-  </div>
-</section>
-
-<section id="plan">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow">Pelan Prudential BSN Takaful</span>
+    <div class="view-head">
       <h2>Pelan mana sesuai untuk anda?</h2>
-      <p>Pilih situasi anda untuk lihat pelan yang berkaitan. Gambaran am sahaja — quotation sebenar disediakan ikut umur, kesihatan dan budget anda.</p>
+      <p>Tapis ikut situasi anda. Ini gambaran am sahaja; quotation sebenar disediakan ikut umur, kesihatan dan budget anda.</p>
     </div>
-    <div class="need-chips" role="group" aria-label="Tapis pelan ikut keperluan">
-      <button type="button" class="need-chip active" data-need="all">Semua pelan</button>
-      <button type="button" class="need-chip" data-need="muda">Baru mula / bajet ketat</button>
-      <button type="button" class="need-chip" data-need="keluarga">Keluarga &amp; perubatan</button>
-      <button type="button" class="need-chip" data-need="wanita">Wanita &amp; kehamilan</button>
-      <button type="button" class="need-chip" data-need="kritikal">Penyakit kritikal</button>
-      <button type="button" class="need-chip" data-need="legasi">Legasi &amp; simpanan</button>
+    <div class="filter" role="group" aria-label="Tapis pelan ikut keperluan">
+      <button type="button" class="chip need-chip" aria-pressed="true" data-need="all">Semua pelan</button>
+      <button type="button" class="chip need-chip" aria-pressed="false" data-need="muda">Baru mula / bajet ketat</button>
+      <button type="button" class="chip need-chip" aria-pressed="false" data-need="keluarga">Keluarga &amp; perubatan</button>
+      <button type="button" class="chip need-chip" aria-pressed="false" data-need="wanita">Wanita &amp; kehamilan</button>
+      <button type="button" class="chip need-chip" aria-pressed="false" data-need="kritikal">Penyakit kritikal</button>
+      <button type="button" class="chip need-chip" aria-pressed="false" data-need="legasi">Legasi &amp; simpanan</button>
     </div>
-    <div class="plans-grid" id="plansGrid">
-      <div class="plan-card" data-needs="muda">
-        <div class="plan-tag">Untuk golongan muda</div>
-        <h3>PruBSN DamaiGenZ</h3>
-        <div class="plan-kind">Pakej 5-dalam-1</div>
-        <p class="plan-desc">Pakej permulaan yang gabungkan perlindungan nyawa, perubatan, kemalangan dan penyakit kritikal dalam satu pelan.</p>
-        <ul class="plan-list">
-          <li class="plan-li">Dari RM78/bulan (contoh: wanita 25 tahun, bukan perokok)</li>
-          <li class="plan-li">Termasuk kad perubatan Medic TotalCare</li>
-          <li class="plan-li">Perlindungan kemalangan &amp; penyakit kritikal</li>
-        </ul>
-        <a href="#tempah" class="plan-btn" data-plan="PruBSN DamaiGenZ">Tanya lanjut</a>
-        <a href="https://www.prubsn.com.my/ms/products/all-basic-plans/" target="_blank" rel="noopener" class="plan-official">Lihat di laman rasmi PruBSN ↗</a>
-      </div>
-      <div class="plan-card" data-needs="muda keluarga">
-        <div class="plan-tag">Asas yang boleh dibina</div>
-        <h3>PruBSN AnugerahMax</h3>
-        <div class="plan-kind">Pelan asas + manfaat pilihan</div>
-        <p class="plan-desc">Perlindungan kematian &amp; hilang upaya menyeluruh (TPD), yang boleh ditambah ikut keperluan anda.</p>
-        <ul class="plan-list">
-          <li class="plan-li">Dari RM50/bulan, umur masuk 1–70 tahun</li>
-          <li class="plan-li">18 manfaat pilihan: perubatan, penyakit kritikal, kemalangan &amp; lain-lain</li>
-          <li class="plan-li">Tempoh fleksibel, sehingga umur 100</li>
-        </ul>
-        <a href="#tempah" class="plan-btn" data-plan="PruBSN AnugerahMax">Tanya lanjut</a>
-        <a href="https://www.prubsn.com.my/ms/products/protection/prubsn-anugerahmax/" target="_blank" rel="noopener" class="plan-official">Lihat di laman rasmi PruBSN ↗</a>
-      </div>
-      <div class="plan-card featured" data-needs="keluarga kritikal">
-        <div class="plan-tag">Pakej lengkap</div>
-        <h3>PruBSN Sinar</h3>
-        <div class="plan-kind">AnugerahMax + Crisis TotalCare + perubatan</div>
-        <p class="plan-desc">Pakej siap sedia untuk ketua keluarga — nyawa, perubatan, kemalangan dan penyakit kritikal dari peringkat awal.</p>
-        <ul class="plan-list">
-          <li class="plan-li">Crisis TotalCare: perlindungan sehingga 166 keadaan</li>
-          <li class="plan-li">Bayaran awal 50% untuk penyakit kritikal peringkat awal</li>
-          <li class="plan-li">Kad perubatan Medic TotalCare &amp; perlindungan kemalangan</li>
-        </ul>
-        <a href="#tempah" class="plan-btn" data-plan="PruBSN Sinar">Tanya lanjut</a>
-        <a href="https://www.prubsn.com.my/ms/products/protection/prubsn-sinar/" target="_blank" rel="noopener" class="plan-official">Lihat di laman rasmi PruBSN ↗</a>
-      </div>
-      <div class="plan-card" data-needs="keluarga wanita">
-        <div class="plan-tag">Sejak dalam kandungan</div>
-        <h3>PruBSN Asas360</h3>
-        <div class="plan-kind">Pelan berkaitan pelaburan</div>
-        <p class="plan-desc">Perlindungan menyeluruh untuk seisi keluarga — boleh mula seawal kandungan 13 minggu.</p>
-        <ul class="plan-list">
-          <li class="plan-li">Health360: perubatan tanpa had tahunan &amp; seumur hidup</li>
-          <li class="plan-li">Baby TotalCare: komplikasi kehamilan &amp; keadaan kongenital</li>
-          <li class="plan-li">Dari RM100/bulan (dewasa) atau RM50/bulan (kanak-kanak)</li>
-        </ul>
-        <a href="#tempah" class="plan-btn" data-plan="PruBSN Asas360">Tanya lanjut</a>
-        <a href="https://www.prubsn.com.my/ms/products/protection/prubsn-asas-360/" target="_blank" rel="noopener" class="plan-official">Lihat di laman rasmi PruBSN ↗</a>
-      </div>
-      <div class="plan-card" data-needs="wanita">
-        <div class="plan-tag">Khas untuk wanita</div>
-        <h3>PruBSN Anggun</h3>
-        <div class="plan-kind">Wanita umur 19–60</div>
-        <p class="plan-desc">Direka untuk setiap fasa hidup wanita — dari kahwin, mengandung hingga kesihatan wanita.</p>
-        <ul class="plan-list">
-          <li class="plan-li">Life Stage Benefit: kahwin, bersalin &amp; umrah</li>
-          <li class="plan-li">Mom Care: kehamilan, kesuburan &amp; bayi</li>
-          <li class="plan-li">Perlindungan kanser wanita &amp; Mental Care</li>
-        </ul>
-        <a href="#tempah" class="plan-btn" data-plan="PruBSN Anggun">Tanya lanjut</a>
-        <a href="https://www.prubsn.com.my/ms/products/protection/prubsn-anggun/" target="_blank" rel="noopener" class="plan-official">Lihat di laman rasmi PruBSN ↗</a>
-      </div>
-      <div class="plan-card" data-needs="kritikal">
-        <div class="plan-tag">Fokus penyakit kritikal</div>
-        <h3>PruBSN Kritikal Care360</h3>
-        <div class="plan-kind">Pelan penyakit kritikal berasingan</div>
-        <p class="plan-desc">Wang tunai bila diagnos penyakit kritikal, supaya anda boleh fokus pada pemulihan — bukan bil.</p>
-        <ul class="plan-list">
-          <li class="plan-li">Perlindungan 43 penyakit kritikal, peringkat awal hingga akhir</li>
-          <li class="plan-li">Recovery Allowance RM10,000 untuk pembedahan major / ICU</li>
-          <li class="plan-li">Living Reward &amp; Wellness Reward</li>
-        </ul>
-        <a href="#tempah" class="plan-btn" data-plan="PruBSN Kritikal Care360">Tanya lanjut</a>
-        <a href="https://www.prubsn.com.my/ms/products/protection/prubsn-kritikal-care360/" target="_blank" rel="noopener" class="plan-official">Lihat di laman rasmi PruBSN ↗</a>
-      </div>
-      <div class="plan-card" data-needs="legasi">
-        <div class="plan-tag">Legasi untuk waris</div>
-        <h3>PruBSN WarisanGold</h3>
-        <div class="plan-kind">Pelan berkaitan pelaburan</div>
-        <p class="plan-desc">Perlindungan bernilai tinggi untuk tinggalkan legasi yang bermakna kepada keluarga.</p>
-        <ul class="plan-list">
-          <li class="plan-li">Perlindungan dari RM350,000 (kanak-kanak dari RM250,000)</li>
-          <li class="plan-li">Tiada pemeriksaan perubatan sehingga RM4 juta (ikut umur masuk)</li>
-          <li class="plan-li">Manfaat Khairat RM3,000 &amp; Badal Haji RM3,000</li>
-        </ul>
-        <a href="#tempah" class="plan-btn" data-plan="PruBSN WarisanGold">Tanya lanjut</a>
-        <a href="https://www.prubsn.com.my/ms/products/legacy/prubsn-warisangold/" target="_blank" rel="noopener" class="plan-official">Lihat di laman rasmi PruBSN ↗</a>
-      </div>
-      <div class="plan-card" data-needs="legasi">
-        <div class="plan-tag">Simpanan berjadual</div>
-        <h3>PruBSN Aspirasi</h3>
-        <div class="plan-kind">Simpanan, pelaburan &amp; perlindungan</div>
-        <p class="plan-desc">Untuk matlamat jangka panjang — haji, pendidikan anak atau persaraan — dengan perlindungan sekali.</p>
-        <ul class="plan-list">
-          <li class="plan-li">Bayaran tunai tahunan bermula hujung tahun ke-2</li>
-          <li class="plan-li">Tempoh pilihan 15, 20, 25 atau 30 tahun</li>
-          <li class="plan-li">Manfaat tambahan untuk kematian akibat kemalangan</li>
-        </ul>
-        <a href="#tempah" class="plan-btn" data-plan="PruBSN Aspirasi">Tanya lanjut</a>
-        <a href="https://www.prubsn.com.my/ms/products/wealth/prubsn-aspirasi/" target="_blank" rel="noopener" class="plan-official">Lihat di laman rasmi PruBSN ↗</a>
-      </div>
+
+    <div class="plans" id="plansGrid">
+      <article class="plan" data-needs="muda">
+        <details>
+          <summary>
+            <span class="plan-top"><span class="plan-tag">Untuk golongan muda</span><h3>PruBSN DamaiGenZ</h3><p class="plan-kind">Pakej 5-dalam-1</p></span>
+            <span class="plan-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </summary>
+          <p class="plan-desc">Pakej permulaan yang gabungkan perlindungan nyawa, perubatan, kemalangan dan penyakit kritikal dalam satu pelan.</p>
+          <ul>
+            <li>Dari RM78/bulan (contoh: wanita 25 tahun, bukan perokok)</li>
+            <li>Termasuk kad perubatan Medic TotalCare</li>
+            <li>Perlindungan kemalangan &amp; penyakit kritikal</li>
+          </ul>
+          <div class="plan-act">
+          <a href="#tempah" class="btn btn-solid plan-btn" data-plan="PruBSN DamaiGenZ">Tanya lanjut</a>
+          <a class="off" href="https://www.prubsn.com.my/ms/products/all-basic-plans/" target="_blank" rel="noopener">Laman rasmi PruBSN</a>
+        </div>
+        </details>
+      </article>
+
+      <article class="plan" data-needs="muda keluarga">
+        <details>
+          <summary>
+            <span class="plan-top"><span class="plan-tag">Asas yang boleh dibina</span><h3>PruBSN AnugerahMax</h3><p class="plan-kind">Pelan asas + manfaat pilihan</p></span>
+            <span class="plan-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </summary>
+          <p class="plan-desc">Perlindungan kematian &amp; hilang upaya menyeluruh (TPD), yang boleh ditambah ikut keperluan anda.</p>
+          <ul>
+            <li>Dari RM50/bulan, umur masuk 1–70 tahun</li>
+            <li>18 manfaat pilihan: perubatan, penyakit kritikal, kemalangan &amp; lain-lain</li>
+            <li>Tempoh fleksibel, sehingga umur 100</li>
+          </ul>
+          <div class="plan-act">
+          <a href="#tempah" class="btn btn-solid plan-btn" data-plan="PruBSN AnugerahMax">Tanya lanjut</a>
+          <a class="off" href="https://www.prubsn.com.my/ms/products/protection/prubsn-anugerahmax/" target="_blank" rel="noopener">Laman rasmi PruBSN</a>
+        </div>
+        </details>
+      </article>
+
+      <article class="plan" data-needs="keluarga kritikal">
+        <details>
+          <summary>
+            <span class="plan-top"><span class="plan-tag">Pakej lengkap</span><h3>PruBSN Sinar</h3><p class="plan-kind">AnugerahMax + Crisis TotalCare + perubatan</p></span>
+            <span class="plan-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </summary>
+          <p class="plan-desc">Pakej siap sedia untuk ketua keluarga: nyawa, perubatan, kemalangan dan penyakit kritikal dari peringkat awal.</p>
+          <ul>
+            <li>Crisis TotalCare: perlindungan sehingga 166 keadaan</li>
+            <li>Bayaran awal 50% untuk penyakit kritikal peringkat awal</li>
+            <li>Kad perubatan Medic TotalCare &amp; perlindungan kemalangan</li>
+          </ul>
+          <div class="plan-act">
+          <a href="#tempah" class="btn btn-solid plan-btn" data-plan="PruBSN Sinar">Tanya lanjut</a>
+          <a class="off" href="https://www.prubsn.com.my/ms/products/protection/prubsn-sinar/" target="_blank" rel="noopener">Laman rasmi PruBSN</a>
+        </div>
+        </details>
+      </article>
+
+      <article class="plan" data-needs="keluarga wanita">
+        <details>
+          <summary>
+            <span class="plan-top"><span class="plan-tag">Sejak dalam kandungan</span><h3>PruBSN Asas360</h3><p class="plan-kind">Pelan berkaitan pelaburan</p></span>
+            <span class="plan-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </summary>
+          <p class="plan-desc">Perlindungan menyeluruh untuk seisi keluarga, boleh mula seawal kandungan 13 minggu.</p>
+          <ul>
+            <li>Health360: perubatan tanpa had tahunan &amp; seumur hidup</li>
+            <li>Baby TotalCare: komplikasi kehamilan &amp; keadaan kongenital</li>
+            <li>Dari RM100/bulan (dewasa) atau RM50/bulan (kanak-kanak)</li>
+          </ul>
+          <div class="plan-act">
+          <a href="#tempah" class="btn btn-solid plan-btn" data-plan="PruBSN Asas360">Tanya lanjut</a>
+          <a class="off" href="https://www.prubsn.com.my/ms/products/protection/prubsn-asas-360/" target="_blank" rel="noopener">Laman rasmi PruBSN</a>
+        </div>
+        </details>
+      </article>
+
+      <article class="plan" data-needs="wanita">
+        <details>
+          <summary>
+            <span class="plan-top"><span class="plan-tag">Khas untuk wanita</span><h3>PruBSN Anggun</h3><p class="plan-kind">Wanita umur 19–60</p></span>
+            <span class="plan-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </summary>
+          <p class="plan-desc">Direka untuk setiap fasa hidup wanita, dari kahwin, mengandung hingga kesihatan wanita.</p>
+          <ul>
+            <li>Life Stage Benefit: kahwin, bersalin &amp; umrah</li>
+            <li>Mom Care: kehamilan, kesuburan &amp; bayi</li>
+            <li>Perlindungan kanser wanita &amp; Mental Care</li>
+          </ul>
+          <div class="plan-act">
+          <a href="#tempah" class="btn btn-solid plan-btn" data-plan="PruBSN Anggun">Tanya lanjut</a>
+          <a class="off" href="https://www.prubsn.com.my/ms/products/protection/prubsn-anggun/" target="_blank" rel="noopener">Laman rasmi PruBSN</a>
+        </div>
+        </details>
+      </article>
+
+      <article class="plan" data-needs="kritikal">
+        <details>
+          <summary>
+            <span class="plan-top"><span class="plan-tag">Fokus penyakit kritikal</span><h3>PruBSN Kritikal Care360</h3><p class="plan-kind">Pelan penyakit kritikal berasingan</p></span>
+            <span class="plan-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </summary>
+          <p class="plan-desc">Wang tunai bila diagnos penyakit kritikal, supaya anda boleh fokus pada pemulihan dan bukan pada bil.</p>
+          <ul>
+            <li>Perlindungan 43 penyakit kritikal, peringkat awal hingga akhir</li>
+            <li>Recovery Allowance RM10,000 untuk pembedahan major / ICU</li>
+            <li>Living Reward &amp; Wellness Reward</li>
+          </ul>
+          <div class="plan-act">
+          <a href="#tempah" class="btn btn-solid plan-btn" data-plan="PruBSN Kritikal Care360">Tanya lanjut</a>
+          <a class="off" href="https://www.prubsn.com.my/ms/products/protection/prubsn-kritikal-care360/" target="_blank" rel="noopener">Laman rasmi PruBSN</a>
+        </div>
+        </details>
+      </article>
+
+      <article class="plan" data-needs="legasi">
+        <details>
+          <summary>
+            <span class="plan-top"><span class="plan-tag">Legasi untuk waris</span><h3>PruBSN WarisanGold</h3><p class="plan-kind">Pelan berkaitan pelaburan</p></span>
+            <span class="plan-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </summary>
+          <p class="plan-desc">Perlindungan bernilai tinggi untuk tinggalkan legasi yang bermakna kepada keluarga.</p>
+          <ul>
+            <li>Perlindungan dari RM350,000 (kanak-kanak dari RM250,000)</li>
+            <li>Tiada pemeriksaan perubatan sehingga RM4 juta (ikut umur masuk)</li>
+            <li>Manfaat Khairat RM3,000 &amp; Badal Haji RM3,000</li>
+          </ul>
+          <div class="plan-act">
+          <a href="#tempah" class="btn btn-solid plan-btn" data-plan="PruBSN WarisanGold">Tanya lanjut</a>
+          <a class="off" href="https://www.prubsn.com.my/ms/products/legacy/prubsn-warisangold/" target="_blank" rel="noopener">Laman rasmi PruBSN</a>
+        </div>
+        </details>
+      </article>
+
+      <article class="plan" data-needs="legasi">
+        <details>
+          <summary>
+            <span class="plan-top"><span class="plan-tag">Simpanan berjadual</span><h3>PruBSN Aspirasi</h3><p class="plan-kind">Simpanan, pelaburan &amp; perlindungan</p></span>
+            <span class="plan-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </summary>
+          <p class="plan-desc">Untuk matlamat jangka panjang seperti haji, pendidikan anak atau persaraan, dengan perlindungan sekali.</p>
+          <ul>
+            <li>Bayaran tunai tahunan bermula hujung tahun ke-2</li>
+            <li>Tempoh pilihan 15, 20, 25 atau 30 tahun</li>
+            <li>Manfaat tambahan untuk kematian akibat kemalangan</li>
+          </ul>
+          <div class="plan-act">
+          <a href="#tempah" class="btn btn-solid plan-btn" data-plan="PruBSN Aspirasi">Tanya lanjut</a>
+          <a class="off" href="https://www.prubsn.com.my/ms/products/wealth/prubsn-aspirasi/" target="_blank" rel="noopener">Laman rasmi PruBSN</a>
+        </div>
+        </details>
+      </article>
     </div>
-    <p class="plans-note">Ringkasan di atas berdasarkan brosur produk Prudential BSN Takaful dan tertakluk kepada terma, syarat, pengecualian dan penilaian underwriting. Bagi pelan berkaitan pelaburan, nilai unit tidak dijamin dan prestasi dana lepas bukan petunjuk prestasi masa depan. Sila rujuk Helaian Pendedahan Produk sebelum membuat keputusan.</p>
+    <p class="fine">Ringkasan di atas berdasarkan brosur produk Prudential BSN Takaful dan tertakluk kepada terma, syarat, pengecualian dan penilaian underwriting. Bagi pelan berkaitan pelaburan, nilai unit tidak dijamin dan prestasi dana lepas bukan petunjuk prestasi masa depan. Sila rujuk Helaian Pendedahan Produk sebelum membuat keputusan.</p>
   </div>
 </section>
 
-<section class="form-sec" id="tempah">
-  <div class="wrap form-grid">
-    <div>
-      <span class="eyebrow">Tempah janji temu</span>
+<!-- ================= TEMPAH ================= -->
+<section class="view" id="tempah" data-view="tempah">
+  <div class="wrap book">
+    <div class="view-head" style="margin-bottom:0;">
       <h2>Kongsi sedikit maklumat dahulu</h2>
-      <p class="lead">Ini membantu kami sediakan quotation yang tepat sebelum sesi Google Meet — jadi masa anda tak terbuang semasa sesi.</p>
-      <div class="form-points">
-        <div class="form-point"><span class="num">1</span>Budget &amp; plan yang diminati membantu kami cadangkan pilihan yang sesuai.</div>
-        <div class="form-point"><span class="num">2</span>Umur &amp; status merokok diperlukan untuk pengiraan caruman yang tepat.</div>
-        <div class="form-point"><span class="num">3</span>Selepas hantar borang, anda akan pilih slot yang kosong terus dari kalendar.</div>
-        <div class="form-point"><span class="num">4</span>Kadangkala, ketua pasukan saya turut sertai sesi untuk bantu perbincangan — ini akan dimaklumkan lebih awal jika berkaitan.</div>
-      </div>
+      <p>Supaya quotation yang tepat sudah sedia sebelum sesi Google Meet, dan masa anda tak terbuang.</p>
+      <ul class="book-points">
+        <li>Dua langkah ringkas, kemudian pilih slot kosong terus dari kalendar.</li>
+        <li>Umur &amp; status merokok diperlukan untuk kira caruman dengan tepat.</li>
+        <li>Kadangkala ketua pasukan saya turut sertai sesi. Ini akan dimaklumkan lebih awal.</li>
+      </ul>
     </div>
-    <div class="mock-form">
+
+    <div class="card mock-form">
       <form id="bookingForm" novalidate>
-        <div class="mf-banner error" id="formBanner"></div>
-
-        <div class="mf-row">
-          <label for="fName">Nama penuh</label>
-          <input class="mf-input" type="text" id="fName" name="nama" placeholder="Contoh: Nurul Ain binti Aziz" autocomplete="name">
-          <div class="mf-error" id="err-fName">Sila isi nama penuh</div>
+        <div class="prog" id="formProg">
+          <span id="progText">Langkah 1 daripada 2</span>
+          <div class="prog-bar" aria-hidden="true"><i id="progFill"></i></div>
         </div>
+        <div class="mf-banner error" id="formBanner" role="alert"></div>
 
-        <div class="mf-row">
-          <label for="fPhone">No. WhatsApp</label>
-          <input class="mf-input" type="tel" id="fPhone" name="whatsapp" placeholder="Contoh: 012-3456789" autocomplete="tel">
-          <div class="mf-error" id="err-fPhone">Sila isi nombor WhatsApp yang sah</div>
-        </div>
-
-        <div class="mf-two">
+        <div class="fstep" data-step="1">
+          <div class="mf-row">
+            <label for="fName">Nama penuh</label>
+            <input class="mf-input" type="text" id="fName" name="nama" placeholder="Contoh: Nurul Ain binti Aziz" autocomplete="name">
+            <div class="mf-error" id="err-fName">Sila isi nama penuh</div>
+          </div>
+          <div class="mf-row">
+            <label for="fPhone">No. WhatsApp</label>
+            <input class="mf-input" type="tel" id="fPhone" name="whatsapp" placeholder="Contoh: 012-3456789" autocomplete="tel" inputmode="tel">
+            <div class="mf-error" id="err-fPhone">Sila isi nombor WhatsApp yang sah</div>
+          </div>
           <div class="mf-row">
             <label for="fAge">Umur peserta</label>
-            <input class="mf-input" type="number" id="fAge" name="umur" placeholder="30" min="0" max="80">
+            <input class="mf-input" type="number" id="fAge" name="umur" placeholder="30" min="0" max="80" inputmode="numeric">
             <div class="mf-error" id="err-fAge">Umur antara 0–80</div>
           </div>
           <div class="mf-row">
-            <label for="fBudget">Anggaran budget/bulan</label>
-            <select class="mf-select" id="fBudget" name="budget">
-              <option value="">Pilih julat</option>
-              <option value="Bawah RM100">Bawah RM100</option>
-              <option value="RM100 – RM300">RM100 – RM300</option>
-              <option value="RM300 – RM500">RM300 – RM500</option>
-              <option value="RM500 ke atas">RM500 ke atas</option>
-              <option value="Belum pasti">Belum pasti</option>
-            </select>
-            <div class="mf-error" id="err-fBudget">Sila pilih anggaran budget</div>
+            <span class="mf-legend" id="smokeLabel">Status merokok</span>
+            <input type="hidden" id="fSmoke" name="merokok" value="Tidak merokok">
+            <div class="mf-toggle" role="group" aria-labelledby="smokeLabel">
+              <button type="button" class="mf-pill" data-smoke="Merokok" aria-pressed="false">Merokok</button>
+              <button type="button" class="mf-pill active" data-smoke="Tidak merokok" aria-pressed="true">Tidak merokok</button>
+            </div>
+          </div>
+          <div class="mf-nav">
+            <button type="button" class="btn btn-solid" id="nextBtn">Seterusnya</button>
           </div>
         </div>
 
-        <div class="mf-row">
-          <label for="fPlan">Plan yang diminati</label>
-          <select class="mf-select" id="fPlan" name="plan">
-            <option value="">Pilih plan</option>
-            <option value="Belum pasti, nak cadangan Iqa">Belum pasti, nak cadangan Iqa</option>
-            <option value="PruBSN DamaiGenZ">DamaiGenZ — pakej permulaan</option>
-            <option value="PruBSN AnugerahMax">AnugerahMax — asas + manfaat pilihan</option>
-            <option value="PruBSN Sinar">Sinar — pakej lengkap</option>
-            <option value="PruBSN Asas360">Asas360 — keluarga &amp; kandungan</option>
-            <option value="PruBSN Anggun">Anggun — khas wanita</option>
-            <option value="PruBSN Kritikal Care360">Kritikal Care360 — penyakit kritikal</option>
-            <option value="PruBSN WarisanGold">WarisanGold — legasi</option>
-            <option value="PruBSN Aspirasi">Aspirasi — simpanan</option>
-          </select>
-          <div class="mf-error" id="err-fPlan">Sila pilih plan yang diminati</div>
-        </div>
-
-        <div class="mf-row">
-          <label>Status merokok</label>
-          <input type="hidden" id="fSmoke" name="merokok" value="Tidak merokok">
-          <div class="mf-toggle">
-            <button type="button" class="mf-pill" data-smoke="Merokok">Merokok</button>
-            <button type="button" class="mf-pill active" data-smoke="Tidak merokok">Tidak merokok</button>
+        <div class="fstep" data-step="2">
+          <div class="mf-two">
+            <div class="mf-row">
+              <label for="fBudget">Budget sebulan</label>
+              <select class="mf-select" id="fBudget" name="budget">
+                <option value="">Pilih julat</option>
+                <option value="Bawah RM100">Bawah RM100</option>
+                <option value="RM100 – RM300">RM100 – RM300</option>
+                <option value="RM300 – RM500">RM300 – RM500</option>
+                <option value="RM500 ke atas">RM500 ke atas</option>
+                <option value="Belum pasti">Belum pasti</option>
+              </select>
+              <div class="mf-error" id="err-fBudget">Sila pilih anggaran budget</div>
+            </div>
+            <div class="mf-row">
+              <label for="fPlan">Plan diminati</label>
+              <select class="mf-select" id="fPlan" name="plan">
+                <option value="">Pilih plan</option>
+                <option value="Belum pasti, nak cadangan Iqa">Belum pasti, nak cadangan Iqa</option>
+                <option value="PruBSN DamaiGenZ">DamaiGenZ — pakej permulaan</option>
+                <option value="PruBSN AnugerahMax">AnugerahMax — asas + manfaat pilihan</option>
+                <option value="PruBSN Sinar">Sinar — pakej lengkap</option>
+                <option value="PruBSN Asas360">Asas360 — keluarga &amp; kandungan</option>
+                <option value="PruBSN Anggun">Anggun — khas wanita</option>
+                <option value="PruBSN Kritikal Care360">Kritikal Care360 — penyakit kritikal</option>
+                <option value="PruBSN WarisanGold">WarisanGold — legasi</option>
+                <option value="PruBSN Aspirasi">Aspirasi — simpanan</option>
+              </select>
+              <div class="mf-error" id="err-fPlan">Sila pilih plan yang diminati</div>
+            </div>
+          </div>
+          <div class="mf-row">
+            <label for="fNote">Nota tambahan (pilihan)</label>
+            <textarea class="mf-textarea" id="fNote" name="nota" placeholder="Contoh: pelan untuk anak umur 3 tahun, atau saya sedang mengandung 4 bulan"></textarea>
+          </div>
+          <div class="mf-row">
+            <label class="mf-consent" id="consentLabel">
+              <input type="checkbox" id="fConsent" name="persetujuan_pdpa" value="Setuju">
+              <span>Saya bersetuju maklumat ini digunakan oleh Iqa (ejen Prudential BSN Takaful) untuk menyediakan quotation dan menghubungi saya melalui WhatsApp, selaras dengan Akta Perlindungan Data Peribadi 2010.</span>
+            </label>
+            <div class="mf-error" id="err-fConsent">Sila tandakan persetujuan untuk teruskan</div>
+          </div>
+          <div class="mf-nav">
+            <button type="button" class="btn btn-line" id="backBtn">Kembali</button>
+            <button type="submit" class="btn btn-solid mf-submit" id="submitBtn">
+              <span class="spin"></span>
+              <span class="mf-submit-label">Hantar &amp; pilih slot</span>
+            </button>
           </div>
         </div>
-
-        <div class="mf-row">
-          <label for="fNote">Nota tambahan (pilihan)</label>
-          <textarea class="mf-textarea" id="fNote" name="nota" placeholder="Contoh: pelan untuk anak umur 3 tahun, atau saya sedang mengandung 4 bulan"></textarea>
-        </div>
-
-        <div class="mf-row">
-          <label class="mf-consent" id="consentLabel">
-            <input type="checkbox" id="fConsent" name="persetujuan_pdpa" value="Setuju">
-            <span>Saya bersetuju maklumat ini digunakan oleh Iqa (ejen Prudential BSN Takaful) untuk menyediakan quotation dan menghubungi saya melalui WhatsApp, selaras dengan Akta Perlindungan Data Peribadi 2010.</span>
-          </label>
-          <div class="mf-error" id="err-fConsent">Sila tandakan persetujuan untuk teruskan</div>
-        </div>
-
-        <button type="submit" class="mf-submit" id="submitBtn">
-          <span class="spin"></span>
-          <span class="mf-submit-label">Hantar & teruskan ke pilihan slot</span>
-        </button>
-        <div class="mf-note">Maklumat anda hanya digunakan untuk sediakan quotation & janji temu.</div>
+        <div class="mf-note">Maklumat anda hanya digunakan untuk sediakan quotation &amp; janji temu.</div>
       </form>
 
       <div class="mf-success" id="formSuccess" style="display:none;">
-        <div class="mf-success-icon">✓</div>
+        <div class="mf-success-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
         <h3>Terima kasih!</h3>
-        <p>Sila pilih slot yang sesuai di bawah — akan disahkan terus melalui WhatsApp.</p>
+        <p>Sila pilih slot yang sesuai di bawah. Ia akan disahkan terus melalui WhatsApp.</p>
         <div id="calEmbed"></div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ================= BANTUAN ================= -->
+<section class="view" id="bantuan" data-view="bantuan">
+  <span id="whatsapp"></span><span id="selepas"></span>
+  <div class="wrap help">
+    <div class="wa">
+      <h2>Nak tanya manusia terus? Boleh.</h2>
+      <p>AI membantu untuk soalan am. Kalau nak berbincang terus dengan ejen, WhatsApp saya bila-bila masa dan saya akan balas secepat mungkin.</p>
+      <div class="wa-row">
+        <a href="https://wa.me/601156771534?text=Hai%20Iqa%2C%20saya%20nak%20tanya%20tentang%20pelan%20takaful." target="_blank" rel="noopener" class="btn btn-solid">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.200-1.800 1.200-.5.1-1 .2-3.300-.7-2.800-1.100-4.500-3.900-4.700-4.100-.1-.2-1.100-1.500-1.100-2.800s.7-2 .9-2.300c.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.100c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.3-.1.6.700 1.200 1.600 2 2.900 2.600.3.1.5.1.6-.1l.8-1c.2-.3.4-.2.6-.1l2 .9c.3.1.4.2.5.3.100.200.100.700-.100 1.200z"/></svg>
+          WhatsApp Iqa sekarang
+        </a>
+        <span class="wa-num">011-5677 1534</span>
+      </div>
+      <details class="wa-chat">
+        <summary>Apa jadi lepas saya hantar mesej?</summary>
+        <div class="wa-msg out">Hi, saya nak tanya pasal plan kesihatan untuk mak saya, umur 55.</div>
+        <div class="wa-time">2:14 ptg</div>
+        <div class="wa-msg">Terima kasih kerana menghubungi iqacares 🙏 Saya sedang balas mesej lain buat masa ini, biasanya reply dalam masa 2 jam waktu bekerja. Sementara itu, boleh cuba tanya Pembantu AI di website untuk jawapan pantas. — Iqa</div>
+        <div class="wa-time">2:14 ptg, auto-reply</div>
+      </details>
+    </div>
+
+    <div class="svc">
+      <h2>Selepas jadi peserta</h2>
+      <p>Pautan terus ke laman rasmi Prudential BSN Takaful.</p>
+      <div class="svc-list">
+        <a class="svc-item" href="https://www.prubsn.com.my/ms/claims-and-services/hospital-network/panel-hospitals/" target="_blank" rel="noopener">
+          <i class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="17" rx="2"/><path d="M12 8v6M9 11h6M10 21v-3h4v3"/></svg></i>
+          <div><b>Hospital panel</b><span>Kemasukan tanpa tunai dengan kad perubatan</span></div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+        </a>
+        <a class="svc-item" href="https://www.prubsn.com.my/ms/claims-and-services/hospital-network/panel-clinics/" target="_blank" rel="noopener">
+          <i class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg></i>
+          <div><b>Klinik panel</b><span>Rawatan pesakit luar di seluruh Malaysia</span></div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+        </a>
+        <a class="svc-item" href="https://www.prubsn.com.my/ms/claims-and-services/claims-made-easy/how-to-claim/" target="_blank" rel="noopener">
+          <i class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></i>
+          <div><b>Cara buat tuntutan</b><span>Langkah dan dokumen yang diperlukan</span></div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+        </a>
+        <a class="svc-item" href="https://www.prubsn.com.my/ms/claims-and-services/services/prubsn-app/" target="_blank" rel="noopener">
+          <i class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.500" width="10" height="19" rx="2.500"/><path d="M11 18h2"/></svg></i>
+          <div><b>Aplikasi PruBSN</b><span>Semak sijil dan status tuntutan</span></div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+        </a>
+        <a class="svc-item" href="https://www.prubsn.com.my/ms/claims-and-services/how-to-pay/" target="_blank" rel="noopener">
+          <i class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5.500" width="18" height="13" rx="2.500"/><path d="M3 10h18M7 15h3"/></svg></i>
+          <div><b>Cara bayar caruman</b><span>Termasuk pembayaran dalam talian</span></div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+        </a>
+        <a class="svc-item" href="https://wa.me/601156771534?text=Hai%20Iqa%2C%20saya%20perlukan%20bantuan%20tentang%20sijil%20%2F%20tuntutan%20saya." target="_blank" rel="noopener">
+          <i class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.500a8.500 8.500 0 0 1-12.300 7.600L3 21l1.900-5.700A8.500 8.500 0 1 1 21 11.500z"/></svg></i>
+          <div><b>Keliru dengan tuntutan?</b><span>WhatsApp saya, saya bantu tunjuk arah</span></div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <b>iqacares</b>
+    <div class="foot-links">
+      <a href="#tentang">Tentang Iqa</a>
+      <a href="#pelan">Pelan</a>
+      <a href="#tempah">Tempah</a>
+      <a href="#bantuan">Tuntutan &amp; panel</a>
+      <a href="https://www.prubsn.com.my/ms/" target="_blank" rel="noopener">PruBSN rasmi</a>
+      <a href="https://www.tiktok.com/@iqacares" target="_blank" rel="noopener">@iqacares</a>
+    </div>
+    <p>Amirah Syafiqa (Iqa), Ejen Berdaftar Prudential BSN Takaful Berhad. No. MTA: MTA-J67304. Maklumat di laman ini bersifat umum dan bukan nasihat kewangan muktamad. Sila rujuk semasa sesi runding untuk cadangan yang disesuaikan.</p>
+    <p>Prudential BSN Takaful Berhad ialah ahli Perbadanan Insurans Deposit Malaysia (PIDM). Manfaat yang dibayar di bawah sijil yang layak dilindungi oleh PIDM tertakluk kepada had perlindungan. Sila rujuk Brosur Sistem Perlindungan Manfaat Takaful dan Insurans PIDM atau hubungi Prudential BSN Takaful Berhad atau PIDM (layari <a href="https://www.pidm.gov.my" target="_blank" rel="noopener">www.pidm.gov.my</a>).</p>
+    <p>© 2026 iqacares. Bukan laman rasmi Prudential BSN Takaful Berhad.</p>
+  </div>
+</footer>
+
+<!-- ---------- Tab bawah (telefon) ---------- -->
+<nav class="tabbar" aria-label="Menu utama">
+  <a href="#utama" data-tab="utama"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8M5 9.500V20h5v-6h4v6h5V9.500"/></svg>Utama</a>
+  <a href="#pelan" data-tab="pelan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.500-3.200 8-8 9-4.800-1-8-4.500-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>Pelan</a>
+  <a href="#tempah" data-tab="tempah"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.500" y="5" width="17" height="16" rx="2.500"/><path d="M8 3v4M16 3v4M3.500 10h17"/></svg>Tempah</a>
+  <a href="#bantuan" data-tab="bantuan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.500 9.500a2.500 2.500 0 1 1 3.500 2.300c-.700.400-1 1-1 1.700M12 17h.01"/></svg>Bantuan</a>
+</nav>
+
+<!-- ---------- Chatbot ---------- -->
+<button type="button" id="chatFab" aria-label="Buka pembantu AI" aria-expanded="false">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.500a8.500 8.500 0 0 1-12.300 7.600L3 21l1.900-5.700A8.500 8.500 0 1 1 21 11.500z"/></svg>
+  Tanya AI
+</button>
+
+<div id="chatPanel" role="dialog" aria-label="Pembantu AI iqacares" aria-hidden="true">
+  <div id="chatPanelHead">
+    <img src="iqa-profile.jpg" alt="" id="chatPanelAvatar">
+    <div>
+      <div id="chatPanelTitle">Pembantu AI iqacares</div>
+      <div id="chatPanelSub"><span class="dot"></span> Dalam talian</div>
+    </div>
+    <button type="button" class="icon-btn" id="chatClose" aria-label="Tutup pembantu AI">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div id="chatMessages" aria-live="polite">
+    <div class="cw-msg bot">Hai! Saya Pembantu AI iqacares 👋 Ada apa-apa saya boleh bantu tentang plan Takaful?</div>
+    <div class="cw-disclaimer">Jawapan am sahaja, bukan nasihat kewangan muktamad. Untuk quotation sebenar, tempah sesi dengan Iqa.</div>
+  </div>
+  <form id="chatForm">
+    <input type="text" id="chatInput" placeholder="Taip soalan anda..." autocomplete="off" aria-label="Soalan anda">
+    <button type="submit" id="chatSend" aria-label="Hantar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+    </button>
+  </form>
+</div>
+
+<!-- ---------- Cal.com ---------- -->
 <script type="text/javascript">
   (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
   Cal("init", "sesiRunding", { origin: "https://cal.com" });
-  Cal.ns.sesiRunding("ui", {
-    theme: "light",
-    styles: { branding: { brandColor: "#0A6E4E" } },
-    hideEventTypeDetails: false,
-    layout: "month_view"
-  });
+  window.iqaCalTheme = function(){
+    var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    Cal.ns.sesiRunding("ui", {
+      theme: dark ? "dark" : "light",
+      styles: { branding: { brandColor: dark ? "#57CFA2" : "#0B6B4F" } },
+      hideEventTypeDetails: false,
+      layout: "month_view"
+    });
+  };
+  window.iqaCalTheme();
 </script>
 
+<!-- ---------- Tema, navigasi, pelan ---------- -->
+<script>
+(function(){
+  const root = document.documentElement;
+
+  // ----- Mod gelap / terang -----
+  const themeBtn = document.getElementById('themeBtn');
+  const metaTheme = document.getElementById('metaTheme');
+  function applyTheme(t, save){
+    root.setAttribute('data-theme', t);
+    metaTheme.setAttribute('content', t === 'dark' ? '#0A1512' : '#F2F6F3');
+    themeBtn.setAttribute('aria-label', t === 'dark' ? 'Tukar ke mod terang' : 'Tukar ke mod gelap');
+    if(save){ try{ localStorage.setItem('iqacares-theme', t); }catch(e){} }
+    if(window.iqaCalTheme) window.iqaCalTheme();
+  }
+  applyTheme(root.getAttribute('data-theme') || 'light', false);
+  themeBtn.addEventListener('click', () => {
+    applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark', true);
+  });
+
+  // ----- Paparan (ganti scroll panjang dengan tab) -----
+  const views = Array.from(document.querySelectorAll('[data-view]'));
+  const alias = { plan:'pelan', selepas:'bantuan', whatsapp:'bantuan', tentang:'utama', 'macam-mana':'utama' };
+  function route(hash, push){
+    const id = (hash || '').replace('#','') || 'utama';
+    const name = views.some(v => v.dataset.view === id) ? id : alias[id];
+    if(!name) return false;
+    views.forEach(v => { v.hidden = v.dataset.view !== name; });
+    document.querySelectorAll('[data-tab]').forEach(a => {
+      if(a.dataset.tab === name) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');
+    });
+    if(push && location.hash !== '#' + id){ try{ history.pushState(null, '', '#' + id); }catch(e){} }
+    const target = (id !== name && alias[id] === 'utama') ? document.getElementById(id) : null;
+    if(target){
+      const y = target.getBoundingClientRect().top + window.scrollY - 76;
+      window.scrollTo(0, y);
+    } else {
+      window.scrollTo(0, 0);
+    }
+    return true;
+  }
+  window.iqaRoute = route;
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="#"]');
+    if(!a) return;
+    if(route(a.getAttribute('href'), true)) e.preventDefault();
+  });
+  window.addEventListener('popstate', () => route(location.hash, false));
+  route(location.hash, false);
+
+  // ----- Tapis pelan ikut keperluan -----
+  const chips = document.querySelectorAll('.need-chip');
+  const cards = document.querySelectorAll('#plansGrid .plan');
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.setAttribute('aria-pressed', 'false'));
+      chip.setAttribute('aria-pressed', 'true');
+      const need = chip.getAttribute('data-need');
+      cards.forEach(card => {
+        const match = need === 'all' || card.getAttribute('data-needs').split(' ').includes(need);
+        card.hidden = !match;
+      });
+      chip.scrollIntoView({ block:'nearest', inline:'center' });
+    });
+  });
+
+  // Skrin lebar: manfaat sentiasa terbuka. Telefon: ketik untuk buka.
+  const wide = window.matchMedia('(min-width:900px)');
+  function syncDetails(){
+    document.querySelectorAll('.plan details').forEach(d => {
+      d.open = wide.matches;
+      d.querySelector('summary').tabIndex = wide.matches ? -1 : 0;
+    });
+  }
+  syncDetails();
+  if(wide.addEventListener) wide.addEventListener('change', syncDetails);
+})();
+</script>
+
+<!-- ---------- Borang tempahan ---------- -->
 <script>
 (function(){
   const form = document.getElementById('bookingForm');
@@ -693,14 +979,33 @@
   const successBox = document.getElementById('formSuccess');
   const smokeInput = document.getElementById('fSmoke');
   const smokePills = document.querySelectorAll('.mf-pill[data-smoke]');
+  const steps = form.querySelectorAll('.fstep');
+  const progText = document.getElementById('progText');
+  const progFill = document.getElementById('progFill');
+  let step = 1;
 
   // ----- FORMSPREE ENDPOINT -----
   const FORM_ENDPOINT = 'https://formspree.io/f/mbglpvjl';
 
+  function showStep(n, focus){
+    step = n;
+    steps.forEach(s => { s.hidden = Number(s.dataset.step) !== n; });
+    progText.textContent = 'Langkah ' + n + ' daripada 2';
+    progFill.style.width = (n * 50) + '%';
+    if(focus){
+      const first = form.querySelector('.fstep[data-step="' + n + '"] .mf-input, .fstep[data-step="' + n + '"] .mf-select');
+      if(first) first.focus({ preventScroll:true });
+      const top = form.getBoundingClientRect().top + window.scrollY - 80;
+      if(window.scrollY > top) window.scrollTo(0, top);
+    }
+  }
+  showStep(1, false);
+
   smokePills.forEach(pill => {
     pill.addEventListener('click', () => {
-      smokePills.forEach(p => p.classList.remove('active'));
+      smokePills.forEach(p => { p.classList.remove('active'); p.setAttribute('aria-pressed','false'); });
       pill.classList.add('active');
+      pill.setAttribute('aria-pressed','true');
       smokeInput.value = pill.getAttribute('data-smoke');
     });
   });
@@ -712,13 +1017,11 @@
     if(err) err.classList.toggle('show', hasError);
   }
 
-  function validate(){
+  function validateStep1(){
     let ok = true;
     const name = document.getElementById('fName').value.trim();
     const phone = document.getElementById('fPhone').value.trim();
     const age = document.getElementById('fAge').value.trim();
-    const budget = document.getElementById('fBudget').value;
-    const plan = document.getElementById('fPlan').value;
 
     setError('fName', name.length < 2);
     if(name.length < 2) ok = false;
@@ -731,6 +1034,13 @@
     const ageOk = age !== '' && ageNum >= 0 && ageNum <= 80;
     setError('fAge', !ageOk);
     if(!ageOk) ok = false;
+    return ok;
+  }
+
+  function validateStep2(){
+    let ok = true;
+    const budget = document.getElementById('fBudget').value;
+    const plan = document.getElementById('fPlan').value;
 
     setError('fBudget', budget === '');
     if(budget === '') ok = false;
@@ -742,8 +1052,12 @@
     document.getElementById('consentLabel').classList.toggle('err', !consentOk);
     document.getElementById('err-fConsent').classList.toggle('show', !consentOk);
     if(!consentOk) ok = false;
-
     return ok;
+  }
+
+  function flag(msg){
+    banner.textContent = msg;
+    banner.classList.add('show');
   }
 
   ['fName','fPhone','fAge','fBudget','fPlan'].forEach(id => {
@@ -755,27 +1069,19 @@
     document.getElementById('err-fConsent').classList.remove('show');
   });
 
+  function goNext(){
+    banner.classList.remove('show');
+    if(!validateStep1()){ flag('Sila lengkapkan medan yang bertanda merah.'); return; }
+    showStep(2, true);
+  }
+  document.getElementById('nextBtn').addEventListener('click', goNext);
+  document.getElementById('backBtn').addEventListener('click', () => { banner.classList.remove('show'); showStep(1, true); });
+
   // "Tanya lanjut" pada kad pelan → pilih pelan tu dalam borang
   document.querySelectorAll('.plan-btn[data-plan]').forEach(btn => {
     btn.addEventListener('click', () => {
-      const sel = document.getElementById('fPlan');
-      sel.value = btn.getAttribute('data-plan');
+      document.getElementById('fPlan').value = btn.getAttribute('data-plan');
       setError('fPlan', false);
-    });
-  });
-
-  // Tapis pelan ikut keperluan
-  const chips = document.querySelectorAll('.need-chip');
-  const cards = document.querySelectorAll('#plansGrid .plan-card');
-  chips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      chips.forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
-      const need = chip.getAttribute('data-need');
-      cards.forEach(card => {
-        const match = need === 'all' || card.getAttribute('data-needs').split(' ').includes(need);
-        card.classList.toggle('hide', !match);
-      });
     });
   });
 
@@ -783,11 +1089,9 @@
     e.preventDefault();
     banner.classList.remove('show');
 
-    if(!validate()){
-      banner.textContent = 'Sila lengkapkan medan yang bertanda merah di bawah.';
-      banner.classList.add('show');
-      return;
-    }
+    if(step === 1){ goNext(); return; }
+    if(!validateStep1()){ showStep(1, true); flag('Sila lengkapkan medan yang bertanda merah.'); return; }
+    if(!validateStep2()){ flag('Sila lengkapkan medan yang bertanda merah.'); return; }
 
     submitBtn.classList.add('loading');
     submitBtn.disabled = true;
@@ -806,7 +1110,7 @@
         if(window.Cal && window.Cal.ns && window.Cal.ns.sesiRunding){
           window.Cal.ns.sesiRunding('inline', {
             elementOrSelector: '#calEmbed',
-            config: { layout: 'month_view' },
+            config: { layout: 'month_view', theme: document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light' },
             calLink: 'amirah-syafiqa-gekz9j/takaful-consultation'
           });
         }
@@ -814,8 +1118,7 @@
         throw new Error('Submit failed');
       }
     } catch(err){
-      banner.textContent = 'Maaf, ada masalah menghantar borang. Sila cuba lagi atau WhatsApp terus.';
-      banner.classList.add('show');
+      flag('Borang tak berjaya dihantar. Cuba lagi, atau WhatsApp Iqa terus di 011-5677 1534.');
     } finally {
       submitBtn.classList.remove('loading');
       submitBtn.disabled = false;
@@ -824,242 +1127,48 @@
 })();
 </script>
 
-<section id="whatsapp">
-  <div class="wrap wa-grid">
-    <div>
-      <span class="eyebrow">Sokongan manusia</span>
-      <h2 style="font-size:clamp(28px,3.6vw,38px);">Nak tanya manusia terus? Boleh.</h2>
-      <p style="color:var(--text-secondary); font-size:16px; margin-top:14px; max-width:420px; line-height:1.5;">AI membantu untuk soalan am, tapi jika anda nak berbincang terus dengan ejen, WhatsApp kami bila-bila masa. Kami akan balas secepat mungkin.</p>
-      <a href="https://wa.me/601156771534?text=Hai%20Iqa%2C%20saya%20nak%20tanya%20tentang%20pelan%20takaful." target="_blank" rel="noopener" class="btn-primary" style="margin-top:26px; display:inline-flex;">WhatsApp Iqa sekarang</a>
-      <div style="font-size:13px; color:var(--text-tertiary); margin-top:12px;">011-5677 1534</div>
-    </div>
-    <div class="wa-card">
-      <div class="wa-msg out">Hi, saya nak tanya pasal plan kesihatan untuk mak saya, umur 55.</div>
-      <div class="wa-time">2:14 ptg</div>
-      <div class="wa-msg">Terima kasih kerana menghubungi iqacares 🙏 Saya sedang balas mesej lain buat masa ini — biasanya reply dalam masa 2 jam waktu bekerja. Sementara itu, boleh cuba tanya Pembantu AI di website untuk jawapan pantas. — Iqa</div>
-      <div class="wa-time">2:14 ptg · Auto-reply</div>
-    </div>
-  </div>
-</section>
-
-<section class="svc" id="selepas">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow">Selepas jadi peserta</span>
-      <h2>Semua yang anda perlu, dalam satu tempat</h2>
-      <p>Pautan terus ke laman rasmi Prudential BSN Takaful — dan saya sentiasa ada kalau anda perlukan bantuan.</p>
-    </div>
-    <div class="svc-grid">
-      <a class="svc-card" href="https://www.prubsn.com.my/ms/claims-and-services/hospital-network/panel-hospitals/" target="_blank" rel="noopener">
-        <div class="svc-icon">🏥</div><h3>Senarai hospital panel</h3>
-        <p>Cari hospital panel berdekatan untuk kemasukan tanpa tunai menggunakan kad perubatan anda.</p>
-        <span class="svc-go">Lihat senarai ↗</span>
-      </a>
-      <a class="svc-card" href="https://www.prubsn.com.my/ms/claims-and-services/hospital-network/panel-clinics/" target="_blank" rel="noopener">
-        <div class="svc-icon">🩺</div><h3>Senarai klinik panel</h3>
-        <p>Klinik panel di seluruh Malaysia untuk rawatan pesakit luar yang dilindungi.</p>
-        <span class="svc-go">Lihat senarai ↗</span>
-      </a>
-      <a class="svc-card" href="https://www.prubsn.com.my/ms/claims-and-services/claims-made-easy/how-to-claim/" target="_blank" rel="noopener">
-        <div class="svc-icon">📄</div><h3>Cara buat tuntutan</h3>
-        <p>Panduan langkah demi langkah dan dokumen yang diperlukan untuk setiap jenis tuntutan.</p>
-        <span class="svc-go">Baca panduan ↗</span>
-      </a>
-      <a class="svc-card" href="https://www.prubsn.com.my/ms/claims-and-services/services/prubsn-app/" target="_blank" rel="noopener">
-        <div class="svc-icon">📱</div><h3>Aplikasi PruBSN</h3>
-        <p>Semak sijil, status tuntutan dan maklumat perlindungan anda terus dari telefon.</p>
-        <span class="svc-go">Ketahui lanjut ↗</span>
-      </a>
-      <a class="svc-card" href="https://www.prubsn.com.my/ms/claims-and-services/how-to-pay/" target="_blank" rel="noopener">
-        <div class="svc-icon">💳</div><h3>Cara bayar caruman</h3>
-        <p>Pilihan pembayaran caruman yang tersedia, termasuk pembayaran dalam talian.</p>
-        <span class="svc-go">Lihat pilihan ↗</span>
-      </a>
-      <a class="svc-card svc-help" href="https://wa.me/601156771534?text=Hai%20Iqa%2C%20saya%20perlukan%20bantuan%20tentang%20sijil%20%2F%20tuntutan%20saya." target="_blank" rel="noopener">
-        <div class="svc-icon">🤝</div><h3>Perlukan bantuan?</h3>
-        <p>Keliru dengan proses tuntutan atau dokumen? WhatsApp saya — saya bantu tunjuk arah.</p>
-        <span class="svc-go">WhatsApp Iqa ↗</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<section class="trust">
-  <div class="wrap trust-grid">
-    <div><div class="trust-num">100%</div><div class="trust-label">Sesi dalam talian</div></div>
-    <div><div class="trust-num">8</div><div class="trust-label">Pelan Prudential BSN Takaful untuk dipilih</div></div>
-    <div><div class="trust-num">0</div><div class="trust-label">Obligasi untuk bertanya sahaja</div></div>
-    <div>
-      <div class="trust-num" style="font-size:24px;">MTA-J67304</div>
-      <div class="trust-label">No. Pendaftaran Ejen, Persatuan Takaful Malaysia</div>
-      <a class="trust-link" href="https://sso.ism.net.my/MTAOARS/Enquiry/Search" target="_blank" rel="noopener">Semak status pendaftaran →</a>
-    </div>
-  </div>
-</section>
-
-<section class="final-cta">
-  <div class="wrap">
-    <h2>Bersedia untuk rancang perlindungan anda?</h2>
-    <p>Tiada tekanan jualan — mula dengan bertanya, atau terus tempah sesi ikut waktu yang sesuai untuk anda.</p>
-    <div class="final-btns">
-      <a href="#tempah" class="btn-primary">Tempah janji temu</a>
-      <button type="button" class="btn-ghost chat-open-trigger">Tanya Pembantu AI</button>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    <div class="foot-grid">
-      <div>
-        <div class="foot-brand">iqacares</div>
-        <p class="foot-note">Amirah Syafiqa (Iqa), Ejen Berdaftar Prudential BSN Takaful Berhad · No. MTA: MTA-J67304. Maklumat di laman ini bersifat umum dan bukan nasihat kewangan muktamad — sila rujuk semasa sesi runding untuk cadangan yang disesuaikan.</p>
-      </div>
-      <div class="foot-links">
-        <a href="#tentang">Tentang Iqa</a>
-        <a href="#plan">Plan</a>
-        <a href="#tempah">Tempah</a>
-        <a href="#selepas">Tuntutan &amp; panel</a>
-        <a href="https://www.prubsn.com.my/ms/" target="_blank" rel="noopener">PruBSN rasmi ↗</a>
-        <a href="https://www.tiktok.com/@iqacares" target="_blank" rel="noopener">@iqacares</a>
-      </div>
-    </div>
-    <p class="foot-legal">Prudential BSN Takaful Berhad ialah ahli Perbadanan Insurans Deposit Malaysia (PIDM). Manfaat yang dibayar di bawah sijil yang layak dilindungi oleh PIDM tertakluk kepada had perlindungan. Sila rujuk Brosur Sistem Perlindungan Manfaat Takaful dan Insurans PIDM atau hubungi Prudential BSN Takaful Berhad atau PIDM (layari <a href="https://www.pidm.gov.my" target="_blank" rel="noopener" style="text-decoration:underline;">www.pidm.gov.my</a>).</p>
-    <div class="foot-bottom">
-      <span>© 2026 iqacares. Bukan laman rasmi Prudential BSN Takaful Berhad.</span>
-      <span>Dibina dengan ❤ untuk keluarga Malaysia</span>
-    </div>
-  </div>
-</footer>
-
-<!-- ---------- CHATBOT WIDGET ---------- -->
-<button type="button" id="chatFab" aria-label="Buka pembantu AI" aria-expanded="false">
-  <svg id="fabIconChat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-  <svg id="fabIconClose" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><path d="M18 6L6 18M6 6l12 12"/></svg>
-</button>
-
-<div id="chatPanel" aria-hidden="true">
-  <div id="chatPanelHead">
-    <div id="chatPanelHeadInfo">
-      <img src="iqa-profile.jpg" alt="" id="chatPanelAvatar">
-      <div>
-        <div id="chatPanelTitle">Pembantu AI iqacares</div>
-        <div id="chatPanelSub"><span class="pulse" style="width:6px;height:6px;"></span> Dalam talian</div>
-      </div>
-    </div>
-  </div>
-  <div id="chatMessages">
-    <div class="cw-msg bot">Hai! Saya Pembantu AI iqacares 👋 Ada apa-apa saya boleh bantu tentang plan Takaful?</div>
-    <div class="cw-disclaimer">Jawapan am sahaja, bukan nasihat kewangan muktamad. Untuk quotation sebenar, tempah sesi dengan Iqa.</div>
-  </div>
-  <form id="chatForm">
-    <input type="text" id="chatInput" placeholder="Taip soalan anda..." autocomplete="off">
-    <button type="submit" id="chatSend" aria-label="Hantar">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-    </button>
-  </form>
-</div>
-
-<style>
-  #chatFab{
-    position:fixed; bottom:72px; right:24px; z-index:90;
-    width:56px; height:56px; border-radius:50%; background:var(--text); color:var(--white);
-    border:none; cursor:pointer; display:flex; align-items:center; justify-content:center;
-    box-shadow:0 10px 30px -8px rgba(0,0,0,0.35); transition:transform .2s ease, background .2s ease;
-  }
-  #chatFab:hover{transform:scale(1.06); background:var(--accent);}
-  #chatFab svg{width:24px; height:24px;}
-
-  #chatPanel{
-    position:fixed; bottom:140px; right:24px; z-index:90;
-    width:360px; max-width:calc(100vw - 32px); height:520px; max-height:calc(100vh - 170px);
-    background:var(--white); border-radius:18px; box-shadow:0 24px 60px -16px rgba(0,0,0,0.28);
-    display:flex; flex-direction:column; overflow:hidden;
-    opacity:0; transform:translateY(16px) scale(0.98); pointer-events:none;
-    transition:opacity .2s ease, transform .2s ease;
-  }
-  #chatPanel.open{opacity:1; transform:translateY(0) scale(1); pointer-events:auto;}
-  #chatPanelHead{padding:16px 18px; border-bottom:1px solid var(--line); flex-shrink:0;}
-  #chatPanelHeadInfo{display:flex; align-items:center; gap:10px;}
-  #chatPanelAvatar{width:34px; height:34px; border-radius:50%; object-fit:cover;}
-  #chatPanelTitle{font-size:14px; font-weight:600; color:var(--text);}
-  #chatPanelSub{font-size:11.5px; color:var(--text-secondary); display:flex; align-items:center; gap:5px; margin-top:2px;}
-  #chatMessages{flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:10px;}
-  .cw-msg{
-    max-width:82%; padding:10px 13px; border-radius:14px; font-size:13.8px; line-height:1.45;
-  }
-  .cw-msg.bot{background:var(--bg-soft); color:var(--text); align-self:flex-start; border-bottom-left-radius:4px;}
-  .cw-msg.user{background:var(--text); color:var(--white); align-self:flex-end; border-bottom-right-radius:4px;}
-  .cw-msg strong{font-weight:600;}
-  .cw-list{margin:4px 0 4px 18px; padding:0;}
-  .cw-list li{margin:2px 0;}
-  .cw-disclaimer{font-size:11px; color:var(--text-tertiary); text-align:center; padding:2px 10px;}
-  .cw-typing{display:flex; gap:4px; padding:12px 14px; background:var(--bg-soft); border-radius:14px; align-self:flex-start; width:fit-content;}
-  .cw-typing span{width:6px; height:6px; border-radius:50%; background:var(--text-tertiary); animation:cwBounce 1.1s infinite ease-in-out;}
-  .cw-typing span:nth-child(2){animation-delay:.15s;}
-  .cw-typing span:nth-child(3){animation-delay:.3s;}
-  @keyframes cwBounce{0%,60%,100%{transform:translateY(0); opacity:.5;} 30%{transform:translateY(-4px); opacity:1;}}
-  #chatForm{display:flex; gap:8px; padding:12px; border-top:1px solid var(--line); flex-shrink:0;}
-  #chatInput{
-    flex:1; min-width:0; border:1px solid var(--line); border-radius:980px; padding:10px 16px; font-size:16px;
-    font-family:inherit; background:var(--bg-soft); color:var(--text);
-  }
-  #chatInput:focus{outline:none; border-color:var(--accent); background:var(--white);}
-  #chatSend{
-    width:38px; height:38px; border-radius:50%; background:var(--accent); color:var(--white);
-    border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0;
-  }
-  #chatSend:hover{background:var(--accent-hover);}
-  #chatSend:disabled{opacity:0.5; cursor:default;}
-  #chatSend svg{width:16px; height:16px;}
-  @media (max-width:480px){
-    #chatPanel{right:16px; bottom:128px; width:calc(100vw - 32px); height:calc(100dvh - 150px); max-height:520px;}
-    .mf-input, .mf-select, .mf-textarea{font-size:16px;}
-    #chatFab{right:16px; bottom:64px;}
-  }
-</style>
-
+<!-- ---------- Chatbot ---------- -->
 <script>
 (function(){
   const fab = document.getElementById('chatFab');
   const panel = document.getElementById('chatPanel');
-  const iconChat = document.getElementById('fabIconChat');
-  const iconClose = document.getElementById('fabIconClose');
+  const closeBtn = document.getElementById('chatClose');
   const messages = document.getElementById('chatMessages');
   const form = document.getElementById('chatForm');
   const input = document.getElementById('chatInput');
   const sendBtn = document.getElementById('chatSend');
-  const heroPreview = document.getElementById('heroChatPreview');
 
   let history = [];
   let isOpen = false;
+  let busy = false;
 
-  function openPanel(){
+  function openPanel(focusInput){
     isOpen = true;
     panel.classList.add('open');
     panel.setAttribute('aria-hidden', 'false');
     fab.setAttribute('aria-expanded', 'true');
-    iconChat.style.display = 'none';
-    iconClose.style.display = 'block';
-    setTimeout(() => input.focus(), 150);
+    document.documentElement.classList.add('chat-open');
+    if(focusInput !== false) setTimeout(() => input.focus(), 150);
   }
   function closePanel(){
     isOpen = false;
     panel.classList.remove('open');
     panel.setAttribute('aria-hidden', 'true');
     fab.setAttribute('aria-expanded', 'false');
-    iconChat.style.display = 'block';
-    iconClose.style.display = 'none';
+    document.documentElement.classList.remove('chat-open');
+    fab.focus();
   }
 
   fab.addEventListener('click', () => isOpen ? closePanel() : openPanel());
+  closeBtn.addEventListener('click', closePanel);
+  document.addEventListener('keydown', e => { if(e.key === 'Escape' && isOpen) closePanel(); });
   document.querySelectorAll('.chat-open-trigger').forEach(el => {
     el.addEventListener('click', (e) => { e.preventDefault(); openPanel(); });
   });
-  if(heroPreview){
-    heroPreview.addEventListener('click', openPanel);
-    heroPreview.addEventListener('keydown', (e) => { if(e.key === 'Enter') openPanel(); });
-  }
+  // Cip situasi di halaman utama → buka chat dan terus hantar soalan
+  document.querySelectorAll('[data-ask]').forEach(el => {
+    el.addEventListener('click', () => { openPanel(false); send(el.getAttribute('data-ask')); });
+  });
 
   // Tukar format ringkas dari AI (**tebal**, *condong*, senarai "- ") kepada HTML yang selamat
   function formatBotText(text){
@@ -1108,14 +1217,13 @@
     if(t) t.remove();
   }
 
-  form.addEventListener('submit', async function(e){
-    e.preventDefault();
-    const text = input.value.trim();
-    if(!text) return;
+  async function send(text){
+    text = (text || '').trim();
+    if(!text || busy) return;
+    busy = true;
 
     addMessage('user', text);
     history.push({ role: 'user', content: text });
-    input.value = '';
     sendBtn.disabled = true;
     showTyping();
 
@@ -1138,8 +1246,17 @@
       hideTyping();
       addMessage('bot', 'Maaf, saya tak dapat sambung buat masa ini. Sila WhatsApp Iqa terus.');
     } finally {
+      busy = false;
       sendBtn.disabled = false;
     }
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const text = input.value;
+    if(!text.trim() || busy) return;
+    input.value = '';
+    send(text);
   });
 })();
 </script>
